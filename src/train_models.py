@@ -6,13 +6,17 @@ import joblib
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from lightgbm import LGBMRegressor
 from xgboost import XGBRegressor
+from pathlib import Path
 
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 # -----------------------------------------
 # 1. Load processed dataset
 # -----------------------------------------
 
-data = pd.read_csv("outputs/processed_traffic_data.csv")
+data = pd.read_csv(
+    BASE_DIR / "outputs" / "processed_traffic_data.csv"
+)
 
 print("Processed dataset loaded successfully")
 print("Dataset shape:", data.shape)

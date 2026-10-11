@@ -1,12 +1,18 @@
 import pandas as pd
 import joblib
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 print("==============================")
 print("TRAFFIC VOLUME PREDICTION")
 print("==============================")
 
 # Load processed dataset
-data = pd.read_csv("outputs/processed_traffic_data.csv")
+data = pd.read_csv(
+    BASE_DIR / "outputs" / "processed_traffic_data.csv"
+)
 
 # Convert date_time
 data["date_time"] = pd.to_datetime(data["date_time"])
