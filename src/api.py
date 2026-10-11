@@ -68,6 +68,7 @@ ALLOWED_ORIGINS = [
     "http://127.0.0.1:5501",
     "http://localhost:5501",
     "https://trafficsense-location-based-traffic-prediction-model-l3jwrk841.vercel.app",
+    "https://trafficsense-location-based-traffic-model-hlh9bx82.vercel.app",
 ]
 
 if FRONTEND_URL and FRONTEND_URL not in ALLOWED_ORIGINS:
