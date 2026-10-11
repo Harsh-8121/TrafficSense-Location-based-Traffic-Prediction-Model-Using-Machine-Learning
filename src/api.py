@@ -62,25 +62,22 @@ app = FastAPI(
 # CORS
 # ============================================================
 
-FRONTEND_URL = os.getenv("FRONTEND_URL", "")
+FRONTEND_URL = os.getenv("FRONTEND_URL", "").strip().rstrip("/")
 
 ALLOWED_ORIGINS = [
     "http://127.0.0.1:5501",
     "http://localhost:5501",
+    "https://trafficsense-location-based-traffic-prediction-model-l3jwrk841.vercel.app",
 ]
 
-if FRONTEND_URL:
+if FRONTEND_URL and FRONTEND_URL not in ALLOWED_ORIGINS:
     ALLOWED_ORIGINS.append(FRONTEND_URL)
 
 app.add_middleware(
     CORSMiddleware,
-
     allow_origins=ALLOWED_ORIGINS,
-
     allow_credentials=True,
-
     allow_methods=["*"],
-
     allow_headers=["*"]
 )
 
