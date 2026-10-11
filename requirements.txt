@@ -1,0 +1,11 @@
+
+fastapi
+uvicorn[standard]
+pandas
+joblib
+oracledb
+python-dotenv
+lightgbm
+scikit-learn
+numpy
+xgboost

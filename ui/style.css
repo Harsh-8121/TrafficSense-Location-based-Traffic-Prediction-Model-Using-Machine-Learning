@@ -1,0 +1,9562 @@
+/* ============================================================
+
+   TRAFFICSENSE
+
+   TRAFFIC PREDICTION DASHBOARD
+
+============================================================ */
+
+
+
+
+
+/* ============================================================
+
+   ROOT VARIABLES
+
+============================================================ */
+
+
+
+:root {
+
+
+
+    --black: #111111;
+
+
+
+    --white: #ffffff;
+
+
+
+    --yellow: #ffd43b;
+
+
+
+    --purple: #8d63ff;
+
+
+
+    --light-bg: #f5f4ef;
+
+
+
+    --card-bg: rgba(255, 255, 255, 0.84);
+
+
+
+    --gray-100: #f2f2f2;
+
+
+
+    --gray-200: #e7e7e7;
+
+
+
+    --gray-300: #d3d3d3;
+
+
+
+    --gray-500: #777777;
+
+
+
+    --gray-600: #666666;
+
+
+
+    --gray-700: #444444;
+
+
+
+    --shadow:
+
+        0 20px 55px rgba(0, 0, 0, 0.07);
+
+
+
+    --radius-small: 4px;
+
+
+
+    --radius-medium: 10px;
+
+
+
+    --radius-large: 18px;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   RESET
+
+============================================================ */
+
+
+
+* {
+
+
+
+    margin: 0;
+
+
+
+    padding: 0;
+
+
+
+    box-sizing: border-box;
+
+
+
+}
+
+
+
+
+
+html {
+
+
+
+    scroll-behavior: smooth;
+
+
+
+}
+
+
+
+
+
+body {
+
+
+
+    margin: 0;
+
+
+
+    background:
+
+        radial-gradient(
+
+            circle at 10% 10%,
+
+            rgba(255, 212, 59, 0.08),
+
+            transparent 28%
+
+        ),
+
+        radial-gradient(
+
+            circle at 90% 80%,
+
+            rgba(141, 99, 255, 0.06),
+
+            transparent 30%
+
+        ),
+
+        var(--light-bg);
+
+
+
+    color: var(--black);
+
+
+
+    font-family:
+
+        "DM Sans",
+
+        Arial,
+
+        sans-serif;
+
+
+
+    min-height: 100vh;
+
+
+
+    overflow-x: hidden;
+
+
+
+}
+
+
+
+
+
+button,
+
+input {
+
+
+
+    font-family: inherit;
+
+
+
+}
+
+
+
+
+
+button {
+
+
+
+    border: none;
+
+
+
+    cursor: pointer;
+
+
+
+}
+
+
+
+
+
+button:focus-visible,
+
+input:focus-visible {
+
+
+
+    outline:
+
+        2px solid var(--yellow);
+
+
+
+    outline-offset: 3px;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   NAVIGATION BAR
+
+============================================================ */
+
+
+
+.navbar {
+
+
+
+    width: 100%;
+
+
+
+    min-height: 82px;
+
+
+
+    padding:
+
+        0 5vw;
+
+
+
+    display: flex;
+
+
+
+    align-items: center;
+
+
+
+    justify-content: space-between;
+
+
+
+    gap: 30px;
+
+
+
+    position: sticky;
+
+
+
+    top: 0;
+
+
+
+    z-index: 1000;
+
+
+
+    background:
+
+        rgba(245, 244, 239, 0.92);
+
+
+
+    backdrop-filter:
+
+        blur(18px);
+
+
+
+    -webkit-backdrop-filter:
+
+        blur(18px);
+
+
+
+    border-bottom:
+
+        1px solid rgba(0, 0, 0, 0.07);
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   NAV BRAND
+
+============================================================ */
+
+
+
+.nav-brand {
+
+
+
+    display: flex;
+
+
+
+    align-items: center;
+
+
+
+    gap: 12px;
+
+
+
+    flex-shrink: 0;
+
+
+
+}
+
+
+
+
+
+.brand-mark {
+
+
+
+    width: 40px;
+
+
+
+    height: 40px;
+
+
+
+    display: flex;
+
+
+
+    align-items: center;
+
+
+
+    justify-content: center;
+
+
+
+    background: var(--black);
+
+
+
+    color: var(--yellow);
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size: 13px;
+
+
+
+    font-weight: 700;
+
+
+
+    letter-spacing: -0.5px;
+
+
+
+    transform:
+
+        rotate(-4deg);
+
+
+
+}
+
+
+
+
+
+.brand-text {
+
+
+
+    display: flex;
+
+
+
+    flex-direction: column;
+
+
+
+    gap: 2px;
+
+
+
+}
+
+
+
+
+
+.brand-name {
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size: 15px;
+
+
+
+    font-weight: 700;
+
+
+
+    letter-spacing: 1px;
+
+
+
+}
+
+
+
+
+
+.brand-subtitle {
+
+
+
+    font-size: 7px;
+
+
+
+    font-weight: 700;
+
+
+
+    letter-spacing: 1.5px;
+
+
+
+    color: var(--gray-500);
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   NAV LINKS
+
+============================================================ */
+
+
+
+.nav-links {
+
+
+
+    display: flex;
+
+
+
+    align-items: center;
+
+
+
+    justify-content: center;
+
+
+
+    gap: 6px;
+
+
+
+}
+
+
+
+
+
+.nav-button {
+
+
+
+    position: relative;
+
+
+
+    padding:
+
+        10px 15px;
+
+
+
+    background: transparent;
+
+
+
+    color: var(--gray-500);
+
+
+
+    font-size: 10px;
+
+
+
+    font-weight: 700;
+
+
+
+    letter-spacing: 0.8px;
+
+
+
+    text-transform: uppercase;
+
+
+
+    transition:
+
+        color 0.2s ease,
+
+        *background* 0.2s ease;
+
+
+
+}
+
+
+
+
+
+.nav-button:hover {
+
+
+
+    color: var(--black);
+
+
+
+}
+
+
+
+
+
+.nav-button.active {
+
+
+
+    color: var(--black);
+
+
+
+    background:
+
+        rgba(255, 212, 59, 0.22);
+
+
+
+}
+
+
+
+
+
+.nav-button.active::after {
+
+
+
+    content: "";
+
+
+
+    position: absolute;
+
+
+
+    left: 15px;
+
+
+
+    right: 15px;
+
+
+
+    bottom: 4px;
+
+
+
+    height: 2px;
+
+
+
+    background: var(--black);
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   NAV STATUS
+
+============================================================ */
+
+
+
+.nav-status {
+
+
+
+    display: flex;
+
+
+
+    align-items: center;
+
+
+
+    gap: 7px;
+
+
+
+    color: var(--gray-500);
+
+
+
+    font-size: 8px;
+
+
+
+    font-weight: 700;
+
+
+
+    letter-spacing: 1px;
+
+
+
+    white-space: nowrap;
+
+
+
+}
+
+
+
+
+
+.status-dot {
+
+
+
+    width: 7px;
+
+
+
+    height: 7px;
+
+
+
+    display: inline-block;
+
+
+
+    border-radius: 50%;
+
+
+
+    background: #3fb950;
+
+
+
+    box-shadow:
+
+        0 0 0 4px rgba(63, 185, 80, 0.1);
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   MAIN CONTAINER
+
+============================================================ */
+
+
+
+.main-container {
+
+
+
+    width: 100%;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   HERO SECTION
+
+============================================================ */
+
+
+
+.hero-section {
+
+
+
+    width: 90%;
+
+
+
+    max-width: 1500px;
+
+
+
+    min-height:
+
+        calc(100vh - 82px);
+
+
+
+    margin:
+
+        0 auto;
+
+
+
+    padding:
+
+        75px 0 90px;
+
+
+
+    display: grid;
+
+
+
+    grid-template-columns:
+
+        minmax(0, 1.05fr)
+
+        minmax(400px, 0.95fr);
+
+
+
+    gap: 70px;
+
+
+
+    align-items: center;
+
+
+
+}
+
+
+
+
+
+.hero-content {
+
+
+
+    position: relative;
+
+
+
+    z-index: 5;
+
+
+
+}
+
+
+
+
+
+.eyebrow {
+
+
+
+    display: flex;
+
+
+
+    align-items: center;
+
+
+
+    gap: 9px;
+
+
+
+    color: var(--gray-500);
+
+
+
+    font-size: 9px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1.7px;
+
+
+
+}
+
+
+
+
+
+.eyebrow span {
+
+
+
+    width: 20px;
+
+
+
+    height: 2px;
+
+
+
+    background: var(--yellow);
+
+
+
+    display: inline-block;
+
+
+
+}
+
+
+
+
+
+.hero-section h1 {
+
+
+
+    margin-top: 20px;
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size:
+
+        clamp(52px, 6vw, 92px);
+
+
+
+    line-height: 0.92;
+
+
+
+    letter-spacing: -5px;
+
+
+
+    font-weight: 700;
+
+
+
+}
+
+
+
+
+
+.outline-text {
+
+
+
+    color: transparent;
+
+
+
+    -webkit-text-stroke:
+
+        1.5px var(--black);
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   HERO DESCRIPTION
+
+============================================================ */
+
+
+
+.hero-description {
+
+
+
+    max-width: 570px;
+
+
+
+    margin-top: 25px;
+
+
+
+    color: var(--gray-600);
+
+
+
+    font-size: 14px;
+
+
+
+    line-height: 1.8;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   PREDICTION PANEL
+
+============================================================ */
+
+
+
+.prediction-panel {
+
+
+
+    margin-top: 38px;
+
+
+
+    padding: 27px;
+
+
+
+    background:
+
+        rgba(255, 255, 255, 0.82);
+
+
+
+    border:
+
+        1px solid rgba(0, 0, 0, 0.08);
+
+
+
+    box-shadow: var(--shadow);
+
+
+
+}
+
+
+
+
+
+.panel-header {
+
+
+
+    display: flex;
+
+
+
+    align-items: flex-start;
+
+
+
+    justify-content: space-between;
+
+
+
+    gap: 20px;
+
+
+
+    margin-bottom: 25px;
+
+
+
+}
+
+
+
+
+
+.panel-label {
+
+
+
+    color: var(--gray-500);
+
+
+
+    font-size: 8px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1.5px;
+
+
+
+}
+
+
+
+
+
+.panel-header h2 {
+
+
+
+    margin-top: 6px;
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size: 23px;
+
+
+
+    letter-spacing: -1px;
+
+
+
+}
+
+
+
+
+
+.panel-number {
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size: 28px;
+
+
+
+    font-weight: 700;
+
+
+
+    color:
+
+        rgba(0, 0, 0, 0.12);
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   INPUT GRID
+
+============================================================ */
+
+
+
+.input-grid {
+
+
+
+    display: grid;
+
+
+
+    grid-template-columns:
+
+        1fr 1fr;
+
+
+
+    gap: 15px;
+
+
+
+}
+
+
+
+
+
+.input-group {
+
+
+
+    display: flex;
+
+
+
+    flex-direction: column;
+
+
+
+    gap: 8px;
+
+
+
+}
+
+
+
+
+
+.input-group label {
+
+
+
+    color: var(--gray-500);
+
+
+
+    font-size: 8px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1.4px;
+
+
+
+}
+
+
+
+
+
+.input-group input {
+
+
+
+    width: 100%;
+
+
+
+    min-height: 48px;
+
+
+
+    padding:
+
+        0 13px;
+
+
+
+    border:
+
+        1px solid rgba(0, 0, 0, 0.12);
+
+
+
+    background:
+
+        rgba(255, 255, 255, 0.8);
+
+
+
+    color: var(--black);
+
+
+
+    font-size: 13px;
+
+
+
+    transition:
+
+        border 0.2s ease,
+
+        box-shadow 0.2s ease;
+
+
+
+}
+
+
+
+
+
+.input-group input:focus {
+
+
+
+    border-color:
+
+        var(--black);
+
+
+
+    box-shadow:
+
+        0 0 0 3px
+
+        rgba(255, 212, 59, 0.25);
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   PREDICT BUTTON
+
+============================================================ */
+
+
+
+.predict-button {
+
+
+
+    width: 100%;
+
+
+
+    min-height: 54px;
+
+
+
+    margin-top: 18px;
+
+
+
+    padding:
+
+        0 18px;
+
+
+
+    display: flex;
+
+
+
+    align-items: center;
+
+
+
+    justify-content: space-between;
+
+
+
+    background: var(--black);
+
+
+
+    color: var(--white);
+
+
+
+    font-size: 9px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1.5px;
+
+
+
+    transition:
+
+        transform 0.2s ease,
+
+        *background* 0.2s ease;
+
+
+
+}
+
+
+
+
+
+.predict-button:hover {
+
+
+
+    background: #252525;
+
+
+
+    transform:
+
+        translateY(-2px);
+
+
+
+}
+
+
+
+
+
+.button-arrow {
+
+
+
+    color: var(--yellow);
+
+
+
+    font-size: 19px;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   RESULT CARD
+
+============================================================ */
+
+
+
+.result-card {
+
+
+
+    margin-top: 22px;
+
+
+
+    padding: 24px;
+
+
+
+    background: var(--black);
+
+
+
+    color: var(--white);
+
+
+
+    transform:
+
+        none;
+
+
+
+    box-shadow:
+
+        0 25px 60px
+
+        rgba(0, 0, 0, 0.15);
+
+
+
+}
+
+
+
+
+
+.result-card-top {
+
+
+
+    display: flex;
+
+
+
+    align-items: flex-start;
+
+
+
+    justify-content: space-between;
+
+
+
+    gap: 20px;
+
+
+
+}
+
+
+
+
+
+.result-label {
+
+
+
+    color: #999;
+
+
+
+    font-size: 8px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1.4px;
+
+
+
+}
+
+
+
+
+
+.result-value {
+
+
+
+    margin-top: 7px;
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size: 36px;
+
+
+
+    font-weight: 700;
+
+
+
+    letter-spacing: -2px;
+
+
+
+}
+
+
+
+
+
+.result-value span {
+
+
+
+    font-family:
+
+        "DM Sans",
+
+        sans-serif;
+
+
+
+    color: #999;
+
+
+
+    font-size: 10px;
+
+
+
+    font-weight: 500;
+
+
+
+    letter-spacing: 0;
+
+
+
+}
+
+
+
+
+
+.traffic-badge {
+
+
+
+    padding:
+
+        8px 10px;
+
+
+
+    background:
+
+        var(--yellow);
+
+
+
+    color:
+
+        var(--black);
+
+
+
+    font-size: 7px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1px;
+
+
+
+    white-space: nowrap;
+
+
+
+}
+
+
+
+
+
+.result-details {
+
+
+
+    display: grid;
+
+
+
+    grid-template-columns:
+
+        1fr 1fr;
+
+
+
+    gap: 15px;
+
+
+
+    margin-top: 25px;
+
+
+
+    padding-top: 18px;
+
+
+
+    border-top:
+
+        1px solid
+
+        rgba(255, 255, 255, 0.12);
+
+
+
+}
+
+
+
+
+
+.result-detail {
+
+
+
+    display: flex;
+
+
+
+    flex-direction: column;
+
+
+
+    gap: 6px;
+
+
+
+}
+
+
+
+
+
+.result-detail span {
+
+
+
+    color: #777;
+
+
+
+    font-size: 7px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1.2px;
+
+
+
+}
+
+
+
+
+
+.result-detail strong {
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size: 17px;
+
+
+
+    font-weight: 600;
+
+
+
+}
+
+
+
+
+
+.result-card-footer {
+
+
+
+    margin-top: 20px;
+
+
+
+    padding-top: 13px;
+
+
+
+    border-top:
+
+        1px solid
+
+        rgba(255, 255, 255, 0.08);
+
+
+
+    display: flex;
+
+
+
+    justify-content: space-between;
+
+
+
+    color: #777;
+
+
+
+    font-size: 7px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1.1px;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   VISUAL SECTION
+
+============================================================ */
+
+
+
+.visual-section {
+
+
+
+    position: relative;
+
+
+
+    min-height: 570px;
+
+
+
+    display: flex;
+
+
+
+    flex-direction: column;
+
+
+
+    justify-content: center;
+
+
+
+}
+
+
+
+
+
+.visual-label {
+
+
+
+    position: absolute;
+
+
+
+    top: 15px;
+
+
+
+    right: 0;
+
+
+
+    color: var(--gray-500);
+
+
+
+    font-size: 8px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1.4px;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   ROAD ART
+
+============================================================ */
+
+
+
+.road-art {
+
+
+
+    position: relative;
+
+
+
+    width: 100%;
+
+
+
+    height: 390px;
+
+
+
+    perspective: 900px;
+
+
+
+    transform:
+
+        perspective(900px)
+
+        rotateX(12deg)
+
+        rotateZ(-5deg);
+
+
+
+    transition:
+
+        transform 0.15s ease-out;
+
+
+
+}
+
+
+
+
+
+.road {
+
+
+
+    position: absolute;
+
+
+
+    width: 100%;
+
+
+
+    height: 100%;
+
+
+
+    overflow: hidden;
+
+
+
+    background:
+
+        linear-gradient(
+
+            90deg,
+
+            #191919,
+
+            #282828,
+
+            #191919
+
+        );
+
+
+
+    clip-path:
+
+        polygon(
+
+            24% 0,
+
+            76% 0,
+
+            100% 100%,
+
+            0 100%
+
+        );
+
+
+
+}
+
+
+
+
+
+.road::before,
+
+.road::after {
+
+
+
+    content: "";
+
+
+
+    position: absolute;
+
+
+
+    top: 0;
+
+
+
+    width: 2px;
+
+
+
+    height: 100%;
+
+
+
+    background:
+
+        rgba(255, 255, 255, 0.25);
+
+
+
+}
+
+
+
+
+
+.road::before {
+
+
+
+    left: 25%;
+
+
+
+}
+
+
+
+
+
+.road::after {
+
+
+
+    right: 25%;
+
+
+
+}
+
+
+
+
+
+.road-line {
+
+
+
+    position: absolute;
+
+
+
+    left: 50%;
+
+
+
+    width: 6px;
+
+
+
+    background:
+
+        var(--yellow);
+
+
+
+    transform:
+
+        translateX(-50%);
+
+
+
+}
+
+
+
+
+
+.line-one {
+
+
+
+    top: 5%;
+
+
+
+    height: 20px;
+
+
+
+}
+
+
+
+
+
+.line-two {
+
+
+
+    top: 38%;
+
+
+
+    height: 50px;
+
+
+
+}
+
+
+
+
+
+.line-three {
+
+
+
+    top: 76%;
+
+
+
+    height: 100px;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   ROAD GLOW
+
+============================================================ */
+
+
+
+.road-glow {
+
+
+
+    position: absolute;
+
+
+
+    width: 75%;
+
+
+
+    height: 70%;
+
+
+
+    left: 12.5%;
+
+
+
+    top: 15%;
+
+
+
+    background:
+
+        radial-gradient(
+
+            ellipse,
+
+            rgba(255, 212, 59, 0.14),
+
+            transparent 65%
+
+        );
+
+
+
+    filter:
+
+        blur(25px);
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   TRAFFIC CARS
+
+============================================================ */
+
+
+
+.traffic-car {
+
+
+
+    position: absolute;
+
+
+
+    z-index: 4;
+
+
+
+    width: 48px;
+
+
+
+    height: 85px;
+
+
+
+}
+
+
+
+
+
+.car-body {
+
+
+
+    position: absolute;
+
+
+
+    inset: 0;
+
+
+
+    background:
+
+        linear-gradient(
+
+            135deg,
+
+            #444,
+
+            #111
+
+        );
+
+
+
+    border-radius:
+
+        12px 12px 7px 7px;
+
+
+
+    box-shadow:
+
+        0 15px 30px
+
+        rgba(0, 0, 0, 0.35);
+
+
+
+}
+
+
+
+
+
+.car-light {
+
+
+
+    position: absolute;
+
+
+
+    width: 7px;
+
+
+
+    height: 13px;
+
+
+
+    bottom: 7px;
+
+
+
+    left: 8px;
+
+
+
+    background:
+
+        #ff4747;
+
+
+
+    box-shadow:
+
+        25px 0 #ff4747;
+
+
+
+}
+
+
+
+
+
+.car-one {
+
+
+
+    left: 43%;
+
+
+
+    top: 8%;
+
+
+
+    transform:
+
+        scale(0.42);
+
+
+
+}
+
+
+
+
+
+.car-two {
+
+
+
+    left: 52%;
+
+
+
+    top: 29%;
+
+
+
+    transform:
+
+        scale(0.56);
+
+
+
+}
+
+
+
+
+
+.car-three {
+
+
+
+    left: 37%;
+
+
+
+    top: 56%;
+
+
+
+    transform:
+
+        scale(0.78);
+
+
+
+}
+
+
+
+
+
+.car-four {
+
+
+
+    left: 55%;
+
+
+
+    top: 70%;
+
+
+
+    transform:
+
+        scale(1);
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   VISUAL STATS
+
+============================================================ */
+
+
+
+.visual-stats {
+
+
+
+    display: grid;
+
+
+
+    grid-template-columns:
+
+        repeat(3, 1fr);
+
+
+
+    gap: 12px;
+
+
+
+    margin-top: 15px;
+
+
+
+}
+
+
+
+
+
+.visual-stat {
+
+
+
+    padding:
+
+        16px;
+
+
+
+    border-top:
+
+        1px solid
+
+        rgba(0, 0, 0, 0.15);
+
+
+
+}
+
+
+
+
+
+.visual-stat span {
+
+
+
+    display: block;
+
+
+
+    color: var(--gray-500);
+
+
+
+    font-size: 7px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1.2px;
+
+
+
+}
+
+
+
+
+
+.visual-stat strong {
+
+
+
+    display: block;
+
+
+
+    margin-top: 7px;
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size: 18px;
+
+
+
+    letter-spacing: -0.7px;
+
+
+
+}
+
+
+
+
+
+.visual-stat small {
+
+
+
+    display: block;
+
+
+
+    margin-top: 4px;
+
+
+
+    color: var(--gray-500);
+
+
+
+    font-size: 6px;
+
+
+
+    font-weight: 700;
+
+
+
+    letter-spacing: 1px;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   FEATURE STRIP
+
+============================================================ */
+
+
+
+.feature-strip {
+
+
+
+    width: 90%;
+
+
+
+    max-width: 1500px;
+
+
+
+    margin:
+
+        0 auto;
+
+
+
+    padding:
+
+        25px 0 75px;
+
+
+
+    display: grid;
+
+
+
+    grid-template-columns:
+
+        repeat(3, 1fr);
+
+
+
+    gap: 35px;
+
+
+
+    border-top:
+
+        1px solid
+
+        rgba(0, 0, 0, 0.1);
+
+
+
+}
+
+
+
+
+
+.feature-item {
+
+
+
+    display: grid;
+
+
+
+    grid-template-columns:
+
+        auto 1fr;
+
+
+
+    gap: 16px;
+
+
+
+}
+
+
+
+
+
+.feature-number {
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size: 11px;
+
+
+
+    font-weight: 700;
+
+
+
+    color: var(--purple);
+
+
+
+}
+
+
+
+
+
+.feature-item h3 {
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size: 18px;
+
+
+
+    letter-spacing: -0.7px;
+
+
+
+}
+
+
+
+
+
+.feature-item p {
+
+
+
+    margin-top: 7px;
+
+
+
+    color: var(--gray-500);
+
+
+
+    font-size: 11px;
+
+
+
+    line-height: 1.65;
+
+
+
+    max-width: 300px;
+
+
+
+}
+
+
+
+
+
+
+
+/* ============================================================
+
+   ANALYTICS SECTION
+
+============================================================ */
+
+
+
+.analytics-section {
+
+
+
+    width: 90%;
+
+
+
+    max-width: 1500px;
+
+
+
+    margin: 0 auto;
+
+
+
+    padding:
+
+        100px 0 120px;
+
+
+
+}
+
+
+
+
+
+.analytics-header {
+
+
+
+    display: flex;
+
+
+
+    align-items: flex-end;
+
+
+
+    justify-content: space-between;
+
+
+
+    gap: 40px;
+
+
+
+    margin-bottom: 45px;
+
+
+
+}
+
+
+
+
+
+.analytics-header h2 {
+
+
+
+    margin-top: 12px;
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size:
+
+        clamp(42px, 5vw, 70px);
+
+
+
+    line-height: 0.95;
+
+
+
+    letter-spacing: -4px;
+
+
+
+}
+
+
+
+
+
+.analytics-header p {
+
+
+
+    max-width: 600px;
+
+
+
+    margin-top: 17px;
+
+
+
+    color: var(--gray-500);
+
+
+
+    font-size: 13px;
+
+
+
+    line-height: 1.7;
+
+
+
+}
+
+
+
+
+
+.analytics-label {
+
+
+
+    padding:
+
+        10px 13px;
+
+
+
+    background:
+
+        var(--black);
+
+
+
+    color:
+
+        var(--yellow);
+
+
+
+    font-size: 8px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1.2px;
+
+
+
+    transform:
+
+        rotate(2deg);
+
+
+
+    white-space: nowrap;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   ANALYTICS STAT CARDS
+
+============================================================ */
+
+
+
+.analytics-stats {
+
+
+
+    display: grid;
+
+
+
+    grid-template-columns:
+
+        repeat(4, 1fr);
+
+
+
+    gap: 18px;
+
+
+
+}
+
+
+
+
+
+.analytics-stat-card {
+
+
+
+    min-height: 180px;
+
+
+
+    padding: 23px;
+
+
+
+    background:
+
+        var(--card-bg);
+
+
+
+    border:
+
+        1px solid
+
+        rgba(0, 0, 0, 0.08);
+
+
+
+    box-shadow:
+
+        var(--shadow);
+
+
+
+}
+
+
+
+
+
+.analytics-stat-top {
+
+
+
+    display: flex;
+
+
+
+    align-items: center;
+
+
+
+    justify-content: space-between;
+
+
+
+    color:
+
+        var(--gray-500);
+
+
+
+    font-size: 7px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1.3px;
+
+
+
+}
+
+
+
+
+
+.analytics-stat-top span:last-child {
+
+
+
+    color:
+
+        rgba(0, 0, 0, 0.2);
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size: 18px;
+
+
+
+}
+
+
+
+
+
+.analytics-stat-card strong {
+
+
+
+    display: block;
+
+
+
+    margin-top: 32px;
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size: 34px;
+
+
+
+    line-height: 1;
+
+
+
+    letter-spacing: -2px;
+
+
+
+}
+
+
+
+
+
+.analytics-stat-card p {
+
+
+
+    margin-top: 9px;
+
+
+
+    color:
+
+        var(--gray-500);
+
+
+
+    font-size: 8px;
+
+
+
+    font-weight: 600;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   TRAFFIC ANALYSIS GRID
+
+============================================================ */
+
+
+
+.traffic-analysis-grid {
+
+
+
+    display: grid;
+
+
+
+    grid-template-columns:
+
+        1fr 1fr;
+
+
+
+    gap: 20px;
+
+
+
+    margin-top: 20px;
+
+
+
+}
+
+
+
+
+
+.analysis-card {
+
+
+
+    padding: 28px;
+
+
+
+    background:
+
+        rgba(255, 255, 255, 0.75);
+
+
+
+    border:
+
+        1px solid
+
+        rgba(0, 0, 0, 0.08);
+
+
+
+}
+
+
+
+
+
+.analysis-card-header {
+
+
+
+    display: flex;
+
+
+
+    align-items: flex-start;
+
+
+
+    justify-content: space-between;
+
+
+
+    gap: 20px;
+
+
+
+}
+
+
+
+
+
+.analysis-label {
+
+
+
+    color:
+
+        var(--gray-500);
+
+
+
+    font-size: 8px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1.4px;
+
+
+
+}
+
+
+
+
+
+.analysis-card h3 {
+
+
+
+    margin-top: 7px;
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size: 25px;
+
+
+
+    letter-spacing: -1.2px;
+
+
+
+}
+
+
+
+
+
+.analysis-number {
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size: 25px;
+
+
+
+    font-weight: 700;
+
+
+
+    color:
+
+        rgba(0, 0, 0, 0.1);
+
+
+
+}
+
+
+
+
+
+.analysis-value {
+
+
+
+    display: flex;
+
+
+
+    align-items: baseline;
+
+
+
+    gap: 8px;
+
+
+
+    margin-top: 30px;
+
+
+
+}
+
+
+
+
+
+.analysis-value strong {
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size: 38px;
+
+
+
+    letter-spacing: -2px;
+
+
+
+}
+
+
+
+
+
+.analysis-value span {
+
+
+
+    color:
+
+        var(--gray-500);
+
+
+
+    font-size: 8px;
+
+
+
+}
+
+
+
+
+
+.analysis-bar {
+
+
+
+    width: 100%;
+
+
+
+    height: 5px;
+
+
+
+    margin-top: 22px;
+
+
+
+    overflow: hidden;
+
+
+
+    background:
+
+        rgba(0, 0, 0, 0.08);
+
+
+
+}
+
+
+
+
+
+.analysis-bar-fill {
+
+
+
+    width: 0;
+
+
+
+    height: 100%;
+
+
+
+    background:
+
+        var(--black);
+
+
+
+    transition:
+
+        width 0.8s ease;
+
+
+
+}
+
+
+
+
+
+.analysis-card p {
+
+
+
+    margin-top: 15px;
+
+
+
+    color:
+
+        var(--gray-500);
+
+
+
+    font-size: 10px;
+
+
+
+    line-height: 1.6;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   BUSIEST HOUR CARD
+
+============================================================ */
+
+
+
+.busiest-hour-card {
+
+
+
+    margin-top: 20px;
+
+
+
+    padding: 30px;
+
+
+
+    display: flex;
+
+
+
+    align-items: center;
+
+
+
+    justify-content: space-between;
+
+
+
+    gap: 40px;
+
+
+
+    background:
+
+        var(--black);
+
+
+
+    color:
+
+        var(--white);
+
+
+
+}
+
+
+
+
+
+.busiest-hour-left {
+
+
+
+    max-width: 700px;
+
+
+
+}
+
+
+
+
+
+.busiest-hour-left .analysis-label {
+
+
+
+    color:
+
+        #999;
+
+
+
+}
+
+
+
+
+
+.busiest-hour-left h3 {
+
+
+
+    margin-top: 12px;
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size:
+
+        clamp(26px, 3vw, 42px);
+
+
+
+    line-height: 1;
+
+
+
+    letter-spacing: -2px;
+
+
+
+}
+
+
+
+
+
+.busiest-hour-left h3 span {
+
+
+
+    color:
+
+        var(--yellow);
+
+
+
+}
+
+
+
+
+
+.busiest-hour-left p {
+
+
+
+    max-width: 600px;
+
+
+
+    margin-top: 15px;
+
+
+
+    color:
+
+        #999;
+
+
+
+    font-size: 11px;
+
+
+
+    line-height: 1.7;
+
+
+
+}
+
+
+
+
+
+.busiest-hour-value {
+
+
+
+    min-width: 200px;
+
+
+
+    padding-left: 25px;
+
+
+
+    border-left:
+
+        1px solid
+
+        rgba(255, 255, 255, 0.15);
+
+
+
+}
+
+
+
+
+
+.busiest-hour-value strong {
+
+
+
+    display: block;
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size: 45px;
+
+
+
+    letter-spacing: -2px;
+
+
+
+    color:
+
+        var(--yellow);
+
+
+
+}
+
+
+
+
+
+.busiest-hour-value span {
+
+
+
+    display: block;
+
+
+
+    margin-top: 5px;
+
+
+
+    color:
+
+        #777;
+
+
+
+    font-size: 7px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1.3px;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   MODEL PERFORMANCE SECTION
+
+============================================================ */
+
+
+
+.model-performance-section {
+
+
+
+    margin-top: 95px;
+
+
+
+}
+
+
+
+
+
+.section-heading-row {
+
+
+
+    display: flex;
+
+
+
+    align-items: flex-end;
+
+
+
+    justify-content: space-between;
+
+
+
+    gap: 30px;
+
+
+
+    margin-bottom: 35px;
+
+
+
+}
+
+
+
+
+
+.section-heading-row h2 {
+
+
+
+    margin-top: 12px;
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size:
+
+        clamp(35px, 4vw, 58px);
+
+
+
+    line-height: 0.95;
+
+
+
+    letter-spacing: -3px;
+
+
+
+}
+
+
+
+
+
+.section-heading-row p {
+
+
+
+    margin-top: 12px;
+
+
+
+    color:
+
+        var(--gray-500);
+
+
+
+    font-size: 11px;
+
+
+
+}
+
+
+
+
+
+.model-heading-tag {
+
+
+
+    padding:
+
+        11px 14px;
+
+
+
+    border:
+
+        1px solid
+
+        rgba(0, 0, 0, 0.12);
+
+
+
+    color:
+
+        var(--gray-600);
+
+
+
+    font-size: 8px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1.2px;
+
+
+
+    white-space: nowrap;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   MODEL CARDS
+
+============================================================ */
+
+
+
+.model-cards {
+
+
+
+    display: grid;
+
+
+
+    grid-template-columns:
+
+        1fr 1fr;
+
+
+
+    gap: 20px;
+
+
+
+}
+
+
+
+
+
+.model-card {
+
+
+
+    padding: 28px;
+
+
+
+    background:
+
+        rgba(255, 255, 255, 0.82);
+
+
+
+    border:
+
+        1px solid
+
+        rgba(0, 0, 0, 0.08);
+
+
+
+    box-shadow:
+
+        var(--shadow);
+
+
+
+}
+
+
+
+
+
+.model-card-top {
+
+
+
+    display: flex;
+
+
+
+    align-items: center;
+
+
+
+    justify-content: space-between;
+
+
+
+}
+
+
+
+
+
+.model-label {
+
+
+
+    color:
+
+        var(--gray-500);
+
+
+
+    font-size: 7px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1.3px;
+
+
+
+}
+
+
+
+
+
+.model-status {
+
+
+
+    padding:
+
+        7px 9px;
+
+
+
+    background:
+
+        var(--yellow);
+
+
+
+    color:
+
+        var(--black);
+
+
+
+    font-size: 6px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1px;
+
+
+
+}
+
+
+
+
+
+.model-status.secondary {
+
+
+
+    background:
+
+        rgba(0, 0, 0, 0.07);
+
+
+
+    color:
+
+        var(--gray-600);
+
+
+
+}
+
+
+
+
+
+.model-card h3 {
+
+
+
+    margin-top: 25px;
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size: 36px;
+
+
+
+    letter-spacing: -2px;
+
+
+
+}
+
+
+
+
+
+.model-description {
+
+
+
+    max-width: 480px;
+
+
+
+    margin-top: 9px;
+
+
+
+    color:
+
+        var(--gray-500);
+
+
+
+    font-size: 11px;
+
+
+
+    line-height: 1.7;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   MODEL METRICS
+
+============================================================ */
+
+
+
+.model-metrics {
+
+
+
+    display: grid;
+
+
+
+    grid-template-columns:
+
+        repeat(2, 1fr);
+
+
+
+    gap: 1px;
+
+
+
+    margin-top: 28px;
+
+
+
+    background:
+
+        rgba(0, 0, 0, 0.08);
+
+
+
+    border:
+
+        1px solid
+
+        rgba(0, 0, 0, 0.08);
+
+
+
+}
+
+
+
+
+
+.model-metric {
+
+
+
+    min-height: 85px;
+
+
+
+    padding: 15px;
+
+
+
+    background:
+
+        rgba(255, 255, 255, 0.9);
+
+
+
+}
+
+
+
+
+
+.model-metric span {
+
+
+
+    display: block;
+
+
+
+    color:
+
+        var(--gray-500);
+
+
+
+    font-size: 7px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1.1px;
+
+
+
+}
+
+
+
+
+
+.model-metric strong {
+
+
+
+    display: block;
+
+
+
+    margin-top: 10px;
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size: 20px;
+
+
+
+    letter-spacing: -0.8px;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   MODEL CONCLUSION
+
+============================================================ */
+
+
+
+.model-conclusion {
+
+
+
+    margin-top: 20px;
+
+
+
+    padding: 25px;
+
+
+
+    display: flex;
+
+
+
+    align-items: flex-start;
+
+
+
+    gap: 18px;
+
+
+
+    background:
+
+        rgba(255, 212, 59, 0.18);
+
+
+
+    border:
+
+        1px solid
+
+        rgba(255, 212, 59, 0.45);
+
+
+
+}
+
+
+
+
+
+.conclusion-mark {
+
+
+
+    width: 34px;
+
+
+
+    height: 34px;
+
+
+
+    flex-shrink: 0;
+
+
+
+    display: flex;
+
+
+
+    align-items: center;
+
+
+
+    justify-content: center;
+
+
+
+    background:
+
+        var(--black);
+
+
+
+    color:
+
+        var(--yellow);
+
+
+
+    font-size: 14px;
+
+
+
+    font-weight: 800;
+
+
+
+}
+
+
+
+
+
+.model-conclusion span {
+
+
+
+    color:
+
+        var(--gray-500);
+
+
+
+    font-size: 7px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1.3px;
+
+
+
+}
+
+
+
+
+
+.model-conclusion h3 {
+
+
+
+    margin-top: 4px;
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size: 24px;
+
+
+
+    letter-spacing: -1px;
+
+
+
+}
+
+
+
+
+
+.model-conclusion p {
+
+
+
+    max-width: 850px;
+
+
+
+    margin-top: 7px;
+
+
+
+    color:
+
+        var(--gray-600);
+
+
+
+    font-size: 10px;
+
+
+
+    line-height: 1.7;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   HISTORY PAGE
+
+============================================================ */
+
+
+
+.history-page {
+
+
+
+    display: none;
+
+
+
+    width: 100%;
+
+
+
+    min-height:
+
+        calc(100vh - 82px);
+
+
+
+    padding:
+
+        90px 0 120px;
+
+
+
+}
+
+
+
+
+
+.history-page-inner {
+
+
+
+    width: 90%;
+
+
+
+    max-width: 1500px;
+
+
+
+    margin: 0 auto;
+
+
+
+}
+
+
+
+
+
+.history-header {
+
+
+
+    display: flex;
+
+
+
+    align-items: flex-end;
+
+
+
+    justify-content: space-between;
+
+
+
+    gap: 40px;
+
+
+
+}
+
+
+
+
+
+.history-header h2 {
+
+
+
+    margin-top: 12px;
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size:
+
+        clamp(45px, 5vw, 72px);
+
+
+
+    line-height: 0.95;
+
+
+
+    letter-spacing: -4px;
+
+
+
+}
+
+
+
+
+
+.history-header p {
+
+
+
+    max-width: 620px;
+
+
+
+    margin-top: 16px;
+
+
+
+    color:
+
+        var(--gray-500);
+
+
+
+    font-size: 12px;
+
+
+
+    line-height: 1.7;
+
+
+
+}
+
+
+
+
+
+.history-header-tag {
+
+
+
+    padding:
+
+        11px 14px;
+
+
+
+    background:
+
+        var(--black);
+
+
+
+    color:
+
+        var(--yellow);
+
+
+
+    font-size: 8px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1.2px;
+
+
+
+    white-space: nowrap;
+
+
+
+    transform:
+
+        rotate(2deg);
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   HISTORY SUMMARY
+
+============================================================ */
+
+
+
+.history-summary {
+
+
+
+    display: grid;
+
+
+
+    grid-template-columns:
+
+        repeat(3, 1fr);
+
+
+
+    gap: 18px;
+
+
+
+    margin-top: 50px;
+
+
+
+}
+
+
+
+
+
+.history-summary-card {
+
+
+
+    padding:
+
+        23px;
+
+
+
+    background:
+
+        rgba(255, 255, 255, 0.82);
+
+
+
+    border:
+
+        1px solid
+
+        rgba(0, 0, 0, 0.08);
+
+
+
+    box-shadow:
+
+        var(--shadow);
+
+
+
+}
+
+
+
+
+
+.history-summary-card span {
+
+
+
+    color:
+
+        var(--gray-500);
+
+
+
+    font-size: 7px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1.3px;
+
+
+
+}
+
+
+
+
+
+.history-summary-card strong {
+
+
+
+    display: block;
+
+
+
+    margin-top: 17px;
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size: 29px;
+
+
+
+    letter-spacing: -1.5px;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   HISTORY TABLE
+
+============================================================ */
+
+
+
+.history-table-wrapper {
+
+
+
+    margin-top: 22px;
+
+
+
+    border:
+
+        1px solid
+
+        rgba(0, 0, 0, 0.08);
+
+
+
+    background:
+
+        rgba(255, 255, 255, 0.75);
+
+
+
+    overflow: hidden;
+
+
+
+}
+
+
+
+
+
+.history-table-header {
+
+
+
+    display: grid;
+
+
+
+    grid-template-columns:
+
+        1.5fr
+
+        1fr
+
+        1fr
+
+        1fr
+
+        0.8fr;
+
+
+
+    gap: 15px;
+
+
+
+    padding:
+
+        15px 20px;
+
+
+
+    background:
+
+        var(--black);
+
+
+
+    color:
+
+        #999;
+
+
+
+    font-size: 7px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1.2px;
+
+
+
+}
+
+
+
+
+
+.history-table-row {
+
+
+
+    display: grid;
+
+
+
+    grid-template-columns:
+
+        1.5fr
+
+        1fr
+
+        1fr
+
+        1fr
+
+        0.8fr;
+
+
+
+    gap: 15px;
+
+
+
+    align-items: center;
+
+
+
+    padding:
+
+        17px 20px;
+
+
+
+    border-bottom:
+
+        1px solid
+
+        rgba(0, 0, 0, 0.07);
+
+
+
+    color:
+
+        var(--gray-700);
+
+
+
+    font-size: 14px;
+
+
+
+}
+
+
+
+
+
+.history-table-row:last-child {
+
+
+
+    border-bottom: none;
+
+
+
+}
+
+
+
+
+
+.history-table-row span {
+
+
+
+    overflow: hidden;
+
+
+
+    text-overflow: ellipsis;
+
+
+
+    white-space: nowrap;
+
+
+
+}
+
+
+
+
+
+.history-status {
+
+
+
+    display: inline-flex;
+
+
+
+    width: fit-content;
+
+
+
+    padding:
+
+        6px 8px;
+
+
+
+    background:
+
+        rgba(255, 212, 59, 0.25);
+
+
+
+    color:
+
+        var(--black);
+
+
+
+    font-size: 11px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 0.8px;
+
+
+
+}
+
+
+
+
+
+.history-loading,
+
+.history-empty,
+
+.history-error {
+
+
+
+    padding:
+
+        45px 20px;
+
+
+
+    text-align: center;
+
+
+
+    color:
+
+        var(--gray-500);
+
+
+
+    font-size: 11px;
+
+
+
+}
+
+
+
+
+
+.history-error {
+
+
+
+    color:
+
+        #b42318;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   BACK TO DASHBOARD BUTTON
+
+============================================================ */
+
+
+
+.back-dashboard-button {
+
+
+
+    margin-top: 25px;
+
+
+
+    padding:
+
+        13px 17px;
+
+
+
+    background:
+
+        var(--black);
+
+
+
+    color:
+
+        var(--white);
+
+
+
+    font-size: 8px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1px;
+
+
+
+    transition:
+
+        transform 0.2s ease;
+
+
+
+}
+
+
+
+
+
+.back-dashboard-button:hover {
+
+
+
+    transform:
+
+        translateY(-2px);
+
+
+
+}
+
+
+
+
+
+
+
+/* ============================================================
+
+   MODEL COMPARISON PAGE
+
+============================================================ */
+
+
+
+.comparison-page {
+
+
+
+    display: none;
+
+
+
+    width: 100%;
+
+
+
+    min-height:
+
+        calc(100vh - 82px);
+
+
+
+    padding:
+
+        90px 0 120px;
+
+
+
+}
+
+
+
+
+
+.comparison-page-inner {
+
+
+
+    width: 90%;
+
+
+
+    max-width: 1500px;
+
+
+
+    margin: 0 auto;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   COMPARISON HEADER
+
+============================================================ */
+
+
+
+.comparison-page-top {
+
+
+
+    display: flex;
+
+
+
+    align-items: flex-end;
+
+
+
+    justify-content: space-between;
+
+
+
+    gap: 35px;
+
+
+
+    margin-bottom: 50px;
+
+
+
+}
+
+
+
+
+
+.comparison-page-top h2 {
+
+
+
+    margin-top: 12px;
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size:
+
+        clamp(45px, 5vw, 76px);
+
+
+
+    line-height: 0.95;
+
+
+
+    letter-spacing: -4px;
+
+
+
+}
+
+
+
+
+
+.comparison-page-top p {
+
+
+
+    max-width: 650px;
+
+
+
+    margin-top: 18px;
+
+
+
+    color:
+
+        var(--gray-500);
+
+
+
+    font-size: 12px;
+
+
+
+    line-height: 1.75;
+
+
+
+}
+
+
+
+
+
+.comparison-model-label {
+
+
+
+    padding:
+
+        12px 15px;
+
+
+
+    background:
+
+        var(--black);
+
+
+
+    color:
+
+        var(--yellow);
+
+
+
+    font-size: 8px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1.2px;
+
+
+
+    white-space: nowrap;
+
+
+
+    transform:
+
+        rotate(2deg);
+
+
+
+}
+
+
+
+
+
+.comparison-model-label span {
+
+
+
+    color:
+
+        #777;
+
+
+
+    margin:
+
+        0 4px;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   COMPARISON GRID
+
+============================================================ */
+
+
+
+.comparison-grid {
+
+
+
+    display: grid;
+
+
+
+    grid-template-columns:
+
+        repeat(2, 1fr);
+
+
+
+    gap: 22px;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   COMPARISON CARD
+
+============================================================ */
+
+
+
+.comparison-card {
+
+
+
+    min-width: 0;
+
+
+
+    padding:
+
+        27px;
+
+
+
+    background:
+
+        rgba(255, 255, 255, 0.84);
+
+
+
+    border:
+
+        1px solid
+
+        rgba(0, 0, 0, 0.08);
+
+
+
+    box-shadow:
+
+        var(--shadow);
+
+
+
+    transition:
+
+        transform 0.25s ease,
+
+        box-shadow 0.25s ease;
+
+
+
+}
+
+
+
+
+
+.comparison-card:hover {
+
+
+
+    transform:
+
+        translateY(-4px);
+
+
+
+    box-shadow:
+
+        0 25px 65px
+
+        rgba(0, 0, 0, 0.10);
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   COMPARISON CARD HEADER
+
+============================================================ */
+
+
+
+.comparison-card-header {
+
+
+
+    display: flex;
+
+
+
+    align-items: flex-start;
+
+
+
+    justify-content: space-between;
+
+
+
+    gap: 20px;
+
+
+
+}
+
+
+
+
+
+.comparison-label {
+
+
+
+    display: block;
+
+
+
+    color:
+
+        var(--gray-500);
+
+
+
+    font-size: 7px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1.4px;
+
+
+
+}
+
+
+
+
+
+.comparison-card h3 {
+
+
+
+    margin-top: 7px;
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size: 28px;
+
+
+
+    line-height: 1;
+
+
+
+    letter-spacing: -1.5px;
+
+
+
+}
+
+
+
+
+
+.comparison-icon {
+
+
+
+    padding:
+
+        9px 10px;
+
+
+
+    background:
+
+        var(--yellow);
+
+
+
+    color:
+
+        var(--black);
+
+
+
+    font-size: 8px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1px;
+
+
+
+    flex-shrink: 0;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   COMPARISON DESCRIPTION
+
+============================================================ */
+
+
+
+.comparison-description {
+
+
+
+    max-width: 520px;
+
+
+
+    min-height: 38px;
+
+
+
+    margin-top: 13px;
+
+
+
+    color:
+
+        var(--gray-500);
+
+
+
+    font-size: 10px;
+
+
+
+    line-height: 1.65;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   CHART CONTAINER
+
+============================================================ */
+
+
+
+.chart-container {
+
+
+
+    position: relative;
+
+
+
+    width: 100%;
+
+
+
+    height: 280px;
+
+
+
+    margin-top: 20px;
+
+
+
+}
+
+
+
+
+
+.chart-container canvas {
+
+
+
+    width: 100% !important;
+
+
+
+    height: 100% !important;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   COMPARISON CONCLUSION
+
+============================================================ */
+
+
+
+.comparison-conclusion {
+
+
+
+    margin-top: 28px;
+
+
+
+    padding:
+
+        30px;
+
+
+
+    background:
+
+        var(--black);
+
+
+
+    color:
+
+        var(--white);
+
+
+
+}
+
+
+
+
+
+.comparison-conclusion .eyebrow {
+
+
+
+    color:
+
+        var(--yellow);
+
+
+
+}
+
+
+
+
+
+.comparison-conclusion .eyebrow span {
+
+
+
+    background:
+
+        var(--yellow);
+
+
+
+}
+
+
+
+
+
+.comparison-conclusion h3 {
+
+
+
+    margin-top: 15px;
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size:
+
+        clamp(27px, 3vw, 40px);
+
+
+
+    line-height: 1;
+
+
+
+    letter-spacing: -1.5px;
+
+
+
+}
+
+
+
+
+
+.comparison-conclusion p {
+
+
+
+    max-width: 850px;
+
+
+
+    margin-top: 11px;
+
+
+
+    color:
+
+        #bdbdbd;
+
+
+
+    font-size: 11px;
+
+
+
+    line-height: 1.75;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   ORACLE ANALYTICS SECTION
+
+============================================================ */
+
+
+
+.oracle-analytics-section {
+
+
+
+    width: 90%;
+
+
+
+    max-width: 1500px;
+
+
+
+    margin:
+
+        0 auto;
+
+
+
+    padding:
+
+        20px 0 110px;
+
+
+
+}
+
+
+
+
+
+.oracle-analytics-header {
+
+
+
+    display: flex;
+
+
+
+    align-items: flex-end;
+
+
+
+    justify-content: space-between;
+
+
+
+    gap: 35px;
+
+
+
+    margin-bottom: 38px;
+
+
+
+}
+
+
+
+
+
+.oracle-analytics-header h2 {
+
+
+
+    margin-top: 12px;
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size:
+
+        clamp(38px, 4vw, 60px);
+
+
+
+    line-height: 0.95;
+
+
+
+    letter-spacing: -3px;
+
+
+
+}
+
+
+
+
+
+.oracle-analytics-header p {
+
+
+
+    max-width: 620px;
+
+
+
+    margin-top: 15px;
+
+
+
+    color:
+
+        var(--gray-500);
+
+
+
+    font-size: 11px;
+
+
+
+    line-height: 1.7;
+
+
+
+}
+
+
+
+
+
+.oracle-label {
+
+
+
+    padding:
+
+        10px 13px;
+
+
+
+    background:
+
+        var(--black);
+
+
+
+    color:
+
+        var(--yellow);
+
+
+
+    font-size: 7px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1.1px;
+
+
+
+    white-space: nowrap;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   ORACLE STATISTICS
+
+============================================================ */
+
+
+
+.oracle-stats-grid {
+
+
+
+    display: grid;
+
+
+
+    grid-template-columns:
+
+        repeat(4, 1fr);
+
+
+
+    gap: 16px;
+
+
+
+}
+
+
+
+
+
+.oracle-stat-card {
+
+
+
+    padding:
+
+        22px;
+
+
+
+    background:
+
+        rgba(255, 255, 255, 0.82);
+
+
+
+    border:
+
+        1px solid
+
+        rgba(0, 0, 0, 0.08);
+
+
+
+}
+
+
+
+
+
+.oracle-stat-card span {
+
+
+
+    display: block;
+
+
+
+    color:
+
+        var(--gray-500);
+
+
+
+    font-size: 7px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1.2px;
+
+
+
+}
+
+
+
+
+
+.oracle-stat-card strong {
+
+
+
+    display: block;
+
+
+
+    margin-top: 22px;
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size: 30px;
+
+
+
+    letter-spacing: -1.5px;
+
+
+
+}
+
+
+
+
+
+.oracle-stat-card small {
+
+
+
+    display: block;
+
+
+
+    margin-top: 7px;
+
+
+
+    color:
+
+        var(--gray-500);
+
+
+
+    font-size: 6px;
+
+
+
+    font-weight: 700;
+
+
+
+    letter-spacing: 1px;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   ORACLE MODEL SECTION
+
+============================================================ */
+
+
+
+.oracle-model-section {
+
+
+
+    margin-top: 45px;
+
+
+
+}
+
+
+
+
+
+.oracle-section-heading {
+
+
+
+    margin-bottom: 18px;
+
+
+
+}
+
+
+
+
+
+.oracle-section-heading h3 {
+
+
+
+    margin-top: 7px;
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size: 27px;
+
+
+
+    letter-spacing: -1.2px;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   ORACLE MODEL TABLE
+
+============================================================ */
+
+
+
+.oracle-model-table-wrapper {
+
+
+
+    width: 100%;
+
+
+
+    overflow-x: auto;
+
+
+
+    background:
+
+        rgba(255, 255, 255, 0.82);
+
+
+
+    border:
+
+        1px solid
+
+        rgba(0, 0, 0, 0.08);
+
+
+
+}
+
+
+
+
+
+.oracle-model-table {
+
+
+
+    width: 100%;
+
+
+
+    min-width: 650px;
+
+
+
+    border-collapse:
+
+        collapse;
+
+
+
+}
+
+
+
+
+
+.oracle-model-table th {
+
+
+
+    padding:
+
+        14px 17px;
+
+
+
+    background:
+
+        var(--black);
+
+
+
+    color:
+
+        #999;
+
+
+
+    text-align: left;
+
+
+
+    font-size: 7px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1.1px;
+
+
+
+}
+
+
+
+
+
+.oracle-model-table td {
+
+
+
+    padding:
+
+        16px 17px;
+
+
+
+    border-bottom:
+
+        1px solid
+
+        rgba(0, 0, 0, 0.07);
+
+
+
+    color:
+
+        var(--gray-700);
+
+
+
+    font-size: 10px;
+
+
+
+}
+
+
+
+
+
+.oracle-model-table tr:last-child td {
+
+
+
+    border-bottom: none;
+
+
+
+}
+
+
+
+
+
+.oracle-model-table td:first-child {
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-weight: 700;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   ORACLE FOOTER NOTE
+
+============================================================ */
+
+
+
+.oracle-footer-note {
+
+
+
+    display: flex;
+
+
+
+    align-items: center;
+
+
+
+    gap: 10px;
+
+
+
+    margin-top: 18px;
+
+
+
+}
+
+
+
+
+
+.oracle-footer-note p {
+
+
+
+    color:
+
+        var(--gray-500);
+
+
+
+    font-size: 9px;
+
+
+
+    line-height: 1.5;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   FOOTER
+
+============================================================ */
+
+
+
+.footer {
+
+
+
+    width: 100%;
+
+
+
+    padding:
+
+        55px 5vw 25px;
+
+
+
+    background:
+
+        var(--black);
+
+
+
+    color:
+
+        var(--white);
+
+
+
+}
+
+
+
+
+
+.footer-inner {
+
+
+
+    max-width: 1500px;
+
+
+
+    margin: 0 auto;
+
+
+
+    display: grid;
+
+
+
+    grid-template-columns:
+
+        1.4fr 1fr 1fr;
+
+
+
+    gap: 50px;
+
+
+
+    align-items: start;
+
+
+
+}
+
+
+
+
+
+.footer-logo {
+
+
+
+    font-family:
+
+        "Space Grotesk",
+
+        sans-serif;
+
+
+
+    font-size: 18px;
+
+
+
+    font-weight: 700;
+
+
+
+    letter-spacing: 1px;
+
+
+
+}
+
+
+
+
+
+.footer-brand p {
+
+
+
+    max-width: 380px;
+
+
+
+    margin-top: 12px;
+
+
+
+    color:
+
+        #777;
+
+
+
+    font-size: 9px;
+
+
+
+    line-height: 1.7;
+
+
+
+}
+
+
+
+
+
+.footer-links {
+
+
+
+    display: flex;
+
+
+
+    flex-direction: column;
+
+
+
+    align-items: flex-start;
+
+
+
+    gap: 8px;
+
+
+
+}
+
+
+
+
+
+.footer-link {
+
+
+
+    padding: 0;
+
+
+
+    background: transparent;
+
+
+
+    color:
+
+        #999;
+
+
+
+    font-size: 8px;
+
+
+
+    font-weight: 700;
+
+
+
+    letter-spacing: 0.9px;
+
+
+
+    text-transform: uppercase;
+
+
+
+    transition:
+
+        color 0.2s ease;
+
+
+
+}
+
+
+
+
+
+.footer-link:hover {
+
+
+
+    color:
+
+        var(--yellow);
+
+
+
+}
+
+
+
+
+
+.footer-tech {
+
+
+
+    display: flex;
+
+
+
+    flex-wrap: wrap;
+
+
+
+    align-content: flex-start;
+
+
+
+    justify-content: flex-end;
+
+
+
+    gap: 7px;
+
+
+
+}
+
+
+
+
+
+.footer-tech span {
+
+
+
+    padding:
+
+        7px 9px;
+
+
+
+    border:
+
+        1px solid
+
+        rgba(255, 255, 255, 0.12);
+
+
+
+    color:
+
+        #777;
+
+
+
+    font-size: 6px;
+
+
+
+    font-weight: 800;
+
+
+
+    letter-spacing: 1px;
+
+
+
+}
+
+
+
+
+
+.footer-bottom {
+
+
+
+    max-width: 1500px;
+
+
+
+    margin:
+
+        45px auto 0;
+
+
+
+    padding-top:
+
+        17px;
+
+
+
+    display: flex;
+
+
+
+    justify-content: space-between;
+
+
+
+    gap: 20px;
+
+
+
+    border-top:
+
+        1px solid
+
+        rgba(255, 255, 255, 0.08);
+
+
+
+    color:
+
+        #555;
+
+
+
+    font-size: 7px;
+
+
+
+    font-weight: 700;
+
+
+
+    letter-spacing: 0.8px;
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   GENERAL HOVER EFFECTS
+
+============================================================ */
+
+
+
+.analytics-stat-card,
+
+.analysis-card,
+
+.model-card,
+
+.history-summary-card,
+
+.oracle-stat-card {
+
+
+
+    transition:
+
+        transform 0.25s ease,
+
+        box-shadow 0.25s ease;
+
+
+
+}
+
+
+
+
+
+.analytics-stat-card:hover,
+
+.analysis-card:hover,
+
+.model-card:hover,
+
+.history-summary-card:hover,
+
+.oracle-stat-card:hover {
+
+
+
+    transform:
+
+        translateY(-3px);
+
+
+
+    box-shadow:
+
+        0 22px 55px
+
+        rgba(0, 0, 0, 0.09);
+
+
+
+}
+
+
+
+
+
+
+
+/* ============================================================
+
+   LARGE SCREEN ADJUSTMENTS
+
+============================================================ */
+
+
+
+@media (max-width: 1200px) {
+
+
+
+    .navbar {
+
+
+
+        padding:
+
+            0 4vw;
+
+
+
+    }
+
+
+
+
+
+    .hero-section {
+
+
+
+        width: 92%;
+
+
+
+        grid-template-columns:
+
+            minmax(0, 1fr)
+
+            minmax(340px, 0.9fr);
+
+
+
+        gap: 45px;
+
+
+
+    }
+
+
+
+
+
+    .analytics-section,
+
+    .oracle-analytics-section,
+
+    .history-page-inner,
+
+    .comparison-page-inner,
+
+    .feature-strip {
+
+
+
+        width: 92%;
+
+
+
+    }
+
+
+
+
+
+    .hero-section h1 {
+
+
+
+        font-size:
+
+            clamp(48px, 6vw, 78px);
+
+
+
+    }
+
+
+
+
+
+    .visual-section {
+
+
+
+        min-height: 500px;
+
+
+
+    }
+
+
+
+
+
+    .road-art {
+
+
+
+        height: 340px;
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   TABLET
+
+============================================================ */
+
+
+
+@media (max-width: 950px) {
+
+
+
+    .navbar {
+
+
+
+        min-height: 75px;
+
+
+
+        gap: 15px;
+
+
+
+    }
+
+
+
+
+
+    .nav-links {
+
+
+
+        order: 3;
+
+
+
+        width: 100%;
+
+
+
+        justify-content: center;
+
+
+
+    }
+
+
+
+
+
+    .navbar {
+
+
+
+        flex-wrap: wrap;
+
+
+
+        padding-top: 12px;
+
+
+
+        padding-bottom: 12px;
+
+
+
+    }
+
+
+
+
+
+    .nav-status {
+
+
+
+        margin-left: auto;
+
+
+
+    }
+
+
+
+
+
+    .hero-section {
+
+
+
+        grid-template-columns:
+
+            1fr;
+
+
+
+        min-height: auto;
+
+
+
+        padding-top: 60px;
+
+
+
+    }
+
+
+
+
+
+    .visual-section {
+
+
+
+        min-height: 470px;
+
+
+
+        order: -1;
+
+
+
+    }
+
+
+
+
+
+    .visual-label {
+
+
+
+        top: 0;
+
+
+
+    }
+
+
+
+
+
+    .road-art {
+
+
+
+        height: 350px;
+
+
+
+    }
+
+
+
+
+
+    .feature-strip {
+
+
+
+        grid-template-columns:
+
+            1fr;
+
+
+
+        gap: 25px;
+
+
+
+    }
+
+
+
+
+
+    .analytics-stats {
+
+
+
+        grid-template-columns:
+
+            repeat(2, 1fr);
+
+
+
+    }
+
+
+
+
+
+    .oracle-stats-grid {
+
+
+
+        grid-template-columns:
+
+            repeat(2, 1fr);
+
+
+
+    }
+
+
+
+
+
+    .comparison-page-top {
+
+
+
+        align-items: flex-start;
+
+
+
+        flex-direction: column;
+
+
+
+    }
+
+
+
+
+
+    .comparison-grid {
+
+
+
+        grid-template-columns:
+
+            1fr;
+
+
+
+    }
+
+
+
+
+
+    .footer-inner {
+
+
+
+        grid-template-columns:
+
+            1fr 1fr;
+
+
+
+    }
+
+
+
+
+
+    .footer-tech {
+
+
+
+        justify-content: flex-start;
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   MOBILE
+
+============================================================ */
+
+
+
+@media (max-width: 650px) {
+
+
+
+    .navbar {
+
+
+
+        min-height: auto;
+
+
+
+        padding:
+
+            12px 5vw;
+
+
+
+    }
+
+
+
+
+
+    .nav-brand {
+
+
+
+        width: 100%;
+
+
+
+    }
+
+
+
+
+
+    .nav-status {
+
+
+
+        display: none;
+
+
+
+    }
+
+
+
+
+
+    .nav-links {
+
+
+
+        width: 100%;
+
+
+
+        overflow-x: auto;
+
+
+
+        justify-content: flex-start;
+
+
+
+        padding-bottom: 2px;
+
+
+
+        scrollbar-width: none;
+
+
+
+    }
+
+
+
+
+
+    .nav-links::-webkit-scrollbar {
+
+
+
+        display: none;
+
+
+
+    }
+
+
+
+
+
+    .nav-button {
+
+
+
+        padding:
+
+            9px 11px;
+
+
+
+        flex-shrink: 0;
+
+
+
+        font-size: 8px;
+
+
+
+    }
+
+
+
+
+
+    .hero-section {
+
+
+
+        width: 90%;
+
+
+
+        padding:
+
+            50px 0 65px;
+
+
+
+        gap: 35px;
+
+
+
+    }
+
+
+
+
+
+    .hero-section h1 {
+
+
+
+        font-size: 48px;
+
+
+
+        letter-spacing: -3px;
+
+
+
+    }
+
+
+
+
+
+    .hero-description {
+
+
+
+        font-size: 12px;
+
+
+
+    }
+
+
+
+
+
+    .prediction-panel {
+
+
+
+        padding: 20px;
+
+
+
+    }
+
+
+
+
+
+    .input-grid {
+
+
+
+        grid-template-columns:
+
+            1fr;
+
+
+
+    }
+
+
+
+
+
+    .result-card {
+
+
+
+        padding: 20px;
+
+
+
+    }
+
+
+
+
+
+    .result-value {
+
+
+
+        font-size: 29px;
+
+
+
+    }
+
+
+
+
+
+    .result-details {
+
+
+
+        grid-template-columns:
+
+            1fr;
+
+
+
+    }
+
+
+
+
+
+    .visual-section {
+
+
+
+        min-height: 390px;
+
+
+
+    }
+
+
+
+
+
+    .road-art {
+
+
+
+        height: 280px;
+
+
+
+    }
+
+
+
+
+
+    .visual-stats {
+
+
+
+        grid-template-columns:
+
+            1fr 1fr;
+
+
+
+    }
+
+
+
+
+
+    .visual-stat:last-child {
+
+
+
+        grid-column:
+
+            1 / -1;
+
+
+
+    }
+
+
+
+
+
+    .feature-strip {
+
+
+
+        width: 90%;
+
+
+
+        padding-bottom: 55px;
+
+
+
+    }
+
+
+
+
+
+    /* ========================================================
+
+       ANALYTICS MOBILE
+
+    ========================================================= */
+
+
+
+    .analytics-section {
+
+
+
+        width: 90%;
+
+
+
+        padding:
+
+            70px 0 80px;
+
+
+
+    }
+
+
+
+
+
+    .analytics-header {
+
+
+
+        align-items: flex-start;
+
+
+
+        flex-direction: column;
+
+
+
+        gap: 20px;
+
+
+
+    }
+
+
+
+
+
+    .analytics-header h2 {
+
+
+
+        font-size: 43px;
+
+
+
+        letter-spacing: -3px;
+
+
+
+    }
+
+
+
+
+
+    .analytics-stats {
+
+
+
+        grid-template-columns:
+
+            1fr 1fr;
+
+
+
+        gap: 10px;
+
+
+
+    }
+
+
+
+
+
+    .analytics-stat-card {
+
+
+
+        min-height: 150px;
+
+
+
+        padding: 17px;
+
+
+
+    }
+
+
+
+
+
+    .analytics-stat-card strong {
+
+
+
+        margin-top: 25px;
+
+
+
+        font-size: 25px;
+
+
+
+    }
+
+
+
+
+
+    .traffic-analysis-grid {
+
+
+
+        grid-template-columns:
+
+            1fr;
+
+
+
+    }
+
+
+
+
+
+    .busiest-hour-card {
+
+
+
+        align-items: flex-start;
+
+
+
+        flex-direction: column;
+
+
+
+        gap: 25px;
+
+
+
+    }
+
+
+
+
+
+    .busiest-hour-value {
+
+
+
+        width: 100%;
+
+
+
+        padding:
+
+            18px 0 0;
+
+
+
+        border-left: none;
+
+
+
+        border-top:
+
+            1px solid
+
+            rgba(255, 255, 255, 0.15);
+
+
+
+    }
+
+
+
+
+
+    .section-heading-row {
+
+
+
+        align-items: flex-start;
+
+
+
+        flex-direction: column;
+
+
+
+    }
+
+
+
+
+
+    .section-heading-row h2 {
+
+
+
+        font-size: 40px;
+
+
+
+    }
+
+
+
+
+
+    .model-cards {
+
+
+
+        grid-template-columns:
+
+            1fr;
+
+
+
+    }
+
+
+
+
+
+    .model-metric {
+
+
+
+        min-height: 75px;
+
+
+
+        padding: 12px;
+
+
+
+    }
+
+
+
+
+
+    .model-metric strong {
+
+
+
+        font-size: 17px;
+
+
+
+    }
+
+
+
+
+
+    /* ========================================================
+
+       HISTORY MOBILE
+
+    ========================================================= */
+
+
+
+    .history-page {
+
+
+
+        padding:
+
+            65px 0 80px;
+
+
+
+    }
+
+
+
+
+
+    .history-header {
+
+
+
+        align-items: flex-start;
+
+
+
+        flex-direction: column;
+
+
+
+    }
+
+
+
+
+
+    .history-header h2 {
+
+
+
+        font-size: 45px;
+
+
+
+        letter-spacing: -3px;
+
+
+
+    }
+
+
+
+
+
+    .history-summary {
+
+
+
+        grid-template-columns:
+
+            1fr;
+
+
+
+        gap: 10px;
+
+
+
+        margin-top: 35px;
+
+
+
+    }
+
+
+
+
+
+    .history-table-wrapper {
+
+
+
+        overflow-x: auto;
+
+
+
+    }
+
+
+
+
+
+    .history-table-header,
+
+    .history-table-row {
+
+
+
+        min-width: 650px;
+
+
+
+    }
+
+
+
+
+
+    /* ========================================================
+
+       MODEL COMPARISON MOBILE
+
+    ========================================================= */
+
+
+
+    .comparison-page {
+
+
+
+        padding:
+
+            65px 0 80px;
+
+
+
+    }
+
+
+
+
+
+    .comparison-page-top {
+
+
+
+        margin-bottom: 35px;
+
+
+
+    }
+
+
+
+
+
+    .comparison-page-top h2 {
+
+
+
+        font-size: 45px;
+
+
+
+        letter-spacing: -3px;
+
+
+
+    }
+
+
+
+
+
+    .comparison-page-top p {
+
+
+
+        font-size: 11px;
+
+
+
+    }
+
+
+
+
+
+    .comparison-model-label {
+
+
+
+        font-size: 7px;
+
+
+
+    }
+
+
+
+
+
+    .comparison-grid {
+
+
+
+        gap: 15px;
+
+
+
+    }
+
+
+
+
+
+    .comparison-card {
+
+
+
+        padding: 20px;
+
+
+
+    }
+
+
+
+
+
+    .comparison-card h3 {
+
+
+
+        font-size: 24px;
+
+
+
+    }
+
+
+
+
+
+    .comparison-description {
+
+
+
+        min-height: auto;
+
+
+
+        font-size: 9px;
+
+
+
+    }
+
+
+
+
+
+    .chart-container {
+
+
+
+        height: 230px;
+
+
+
+        margin-top: 18px;
+
+
+
+    }
+
+
+
+
+
+    .comparison-conclusion {
+
+
+
+        padding: 22px;
+
+
+
+    }
+
+
+
+
+
+    .comparison-conclusion h3 {
+
+
+
+        font-size: 28px;
+
+
+
+    }
+
+
+
+
+
+    /* ========================================================
+
+       ORACLE MOBILE
+
+    ========================================================= */
+
+
+
+    .oracle-analytics-section {
+
+
+
+        width: 90%;
+
+
+
+        padding:
+
+            10px 0 75px;
+
+
+
+    }
+
+
+
+
+
+    .oracle-analytics-header {
+
+
+
+        align-items: flex-start;
+
+
+
+        flex-direction: column;
+
+
+
+    }
+
+
+
+
+
+    .oracle-analytics-header h2 {
+
+
+
+        font-size: 42px;
+
+
+
+        letter-spacing: -3px;
+
+
+
+    }
+
+
+
+
+
+    .oracle-stats-grid {
+
+
+
+        grid-template-columns:
+
+            1fr 1fr;
+
+
+
+        gap: 10px;
+
+
+
+    }
+
+
+
+
+
+    .oracle-stat-card {
+
+
+
+        padding: 17px;
+
+
+
+    }
+
+
+
+
+
+    .oracle-stat-card strong {
+
+
+
+        font-size: 25px;
+
+
+
+    }
+
+
+
+
+
+    /* ========================================================
+
+       FOOTER MOBILE
+
+    ========================================================= */
+
+
+
+    .footer {
+
+
+
+        padding:
+
+            45px 5vw 20px;
+
+
+
+    }
+
+
+
+
+
+    .footer-inner {
+
+
+
+        grid-template-columns:
+
+            1fr;
+
+
+
+        gap: 30px;
+
+
+
+    }
+
+
+
+
+
+    .footer-tech {
+
+
+
+        justify-content: flex-start;
+
+
+
+    }
+
+
+
+
+
+    .footer-bottom {
+
+
+
+        align-items: flex-start;
+
+
+
+        flex-direction: column;
+
+
+
+        gap: 8px;
+
+
+
+        margin-top: 30px;
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   VERY SMALL MOBILE
+
+============================================================ */
+
+
+
+@media (max-width: 400px) {
+
+
+
+    .hero-section h1 {
+
+
+
+        font-size: 42px;
+
+
+
+    }
+
+
+
+
+
+    .analytics-stats {
+
+
+
+        grid-template-columns:
+
+            1fr;
+
+
+
+    }
+
+
+
+
+
+    .oracle-stats-grid {
+
+
+
+        grid-template-columns:
+
+            1fr;
+
+
+
+    }
+
+
+
+
+
+    .visual-stats {
+
+
+
+        grid-template-columns:
+
+            1fr;
+
+
+
+    }
+
+
+
+
+
+    .visual-stat:last-child {
+
+
+
+        grid-column:
+
+            auto;
+
+
+
+    }
+
+
+
+
+
+    .result-value {
+
+
+
+        font-size: 25px;
+
+
+
+    }
+
+
+
+
+
+    .model-metrics {
+
+
+
+        grid-template-columns:
+
+            1fr;
+
+
+
+    }
+
+
+
+
+
+    .comparison-page-top h2 {
+
+
+
+        font-size: 40px;
+
+
+
+    }
+
+
+
+
+
+    .comparison-conclusion h3 {
+
+
+
+        font-size: 25px;
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
+/* ============================================================
+
+   ACCESSIBILITY / REDUCED MOTION
+
+============================================================ */
+
+
+
+@media (prefers-reduced-motion: reduce) {
+
+
+
+    html {
+
+
+
+        scroll-behavior: auto;
+
+
+
+    }
+
+
+
+
+
+    *,
+
+    *::before,
+
+    *::after {
+
+
+
+        animation-duration: 0.01ms !important;
+
+
+
+        animation-iteration-count: 1 !important;
+
+
+
+        transition-duration: 0.01ms !important;
+
+
+
+    }
+
+
+
+}
+
+
+
+/* ============================================================
+
+   PREDICTION HISTORY REFRESH BUTTON
+
+============================================================ */
+
+
+
+.history-refresh-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+
+
+    padding: 13px 17px;
+
+
+
+    background: #111111;
+
+    color: #ffd43b;
+
+
+
+    border: 1px solid #111111;
+
+
+
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+
+
+    transition:
+
+        *background* 0.2s ease,
+
+        color 0.2s ease,
+
+        transform 0.2s ease;
+
+}
+
+
+
+.history-refresh-button:hover {
+
+    background: #ffd43b;
+
+    color: #111111;
+
+    transform: translateY(-2px);
+
+}
+
+
+
+.history-refresh-button:disabled {
+
+    opacity: 0.65;
+
+    cursor: wait;
+
+    transform: none;
+
+}
+
+
+
+.refresh-icon {
+
+    font-size: 18px;
+
+    line-height: 1;
+
+}
+
+
+
+.history-refresh-button:disabled .refresh-icon {
+
+    animation: refreshSpin 0.8s linear infinite;
+
+}
+
+
+
+@keyframes refreshSpin {
+
+    from {
+
+        transform: rotate(0deg);
+
+    }
+
+
+
+    to {
+
+        transform: rotate(360deg);
+
+    }
+
+}
+
+
+
+@media (max-width: 650px) {
+
+    .history-header-tag,
+
+    .history-refresh-button {
+
+        align-self: flex-start;
+
+    }
+
+
+
+    .history-refresh-button {
+
+        padding: 11px 13px;
+
+        font-size: 8px;
+
+    }
+
+}
+
+/* ============================================================
+
+   PREDICTION HISTORY - CLEAR COLUMN HEADINGS
+
+============================================================ */
+
+
+
+.history-table-header {
+
+    background: #111111 !important;
+
+    color: #ffd43b !important;
+
+
+
+    font-size: 11px !important;
+
+    font-weight: 800 !important;
+
+    letter-spacing: 1.5px !important;
+
+
+
+    padding: 19px 20px !important;
+
+
+
+    border-bottom: 2px solid #ffd43b;
+
+}
+
+
+
+/* Keep column headings clearly visible */
+
+.history-table-header span {
+
+    color: #ffd43b !important;
+
+    font-size: 11px !important;
+
+    font-weight: 800 !important;
+
+    letter-spacing: 1.5px !important;
+
+}
+
+
+
+/* Make headings easier to distinguish from the data */
+
+.history-table-header span {
+
+    text-transform: uppercase;
+
+}
+
+
+
+/* Mobile adjustment */
+
+@media (max-width: 650px) {
+
+    .history-table-header {
+
+        font-size: 10px !important;
+
+        padding: 16px !important;
+
+    }
+
+
+
+    .history-table-header span {
+
+        font-size: 10px !important;
+
+        letter-spacing: 1px !important;
+
+    }
+
+}
+
+
+/* ============================================================
+   TRAFFICSENSE — LOCATION CARD REDESIGN
+   ============================================================ */
+
+.location-card {
+    position: relative;
+    width: 100%;
+    max-width: 510px;
+    margin: 65px 0 20px auto;
+    padding: 25px 26px 19px;
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(17, 17, 17, 0.09);
+    border-top: 3px solid #ffd43b;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.055);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.location-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.09);
+}
+
+.location-card-main {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+}
+
+.location-pin {
+    width: 58px;
+    height: 58px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #111111;
+    color: #ffd43b;
+}
+
+.location-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.location-eyebrow {
+    display: block;
+    margin-bottom: 8px;
+    color: #777777;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+}
+
+.location-details h3 {
+    margin: 0;
+    color: #111111;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -1.5px;
+}
+
+.location-details p {
+    margin-top: 8px;
+    color: #777777;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.location-direction {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 10px;
+    background: #fff3bf;
+    color: #111111;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.7px;
+    white-space: nowrap;
+}
+
+.direction-dot {
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #35a853;
+}
+
+.location-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 22px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(17, 17, 17, 0.1);
+    color: #888888;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.location-card-footer span:last-child {
+    color: #111111;
+    white-space: nowrap;
+}
+
+/* Keep the old metrics hidden if their markup is restored later. */
+.visual-stats {
+    display: none !important;
+}
+
+@media (max-width: 650px) {
+    .location-card {
+        max-width: 100%;
+        margin-top: 45px;
+        padding: 20px 17px 16px;
+    }
+
+    .location-card-main {
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .location-pin {
+        width: 46px;
+        height: 46px;
+    }
+
+    .location-details h3 {
+        font-size: 29px;
+    }
+
+    .location-eyebrow {
+        font-size: 7px;
+        letter-spacing: 1px;
+    }
+
+    .location-details p {
+        font-size: 11px;
+    }
+
+    .location-direction {
+        margin-left: auto;
+        font-size: 7px;
+        padding: 8px;
+    }
+
+    .location-card-footer {
+        font-size: 7px;
+        letter-spacing: 0.6px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .location-card {
+        transition: none;
+    }
+
+    .location-card:hover {
+        transform: none;
+    }
+}
+
+/* Model performance table headings */
+table thead th {
+    color: #ffd43b !important;
+    font-weight: 800;
+}
+
+
+/* XGBoost COMPARED badge */
+.model-status.secondary {
+    background: #111111 !important;
+    color: #ffd43b !important;
+}
+
+/* LIGHTGBM vs XGBOOST heading tag */
+.model-heading-tag {
+    background: #111111 !important;
+    color: #ffd43b !important;
+    border-color: #111111 !important;
+}
+
+/* =========================================
+   TRAFFICSENSE — REALISTIC HIGHWAY
+   ========================================= */
+
+/* Give the illustration a more natural perspective */
+.road-art {
+    perspective: 1100px;
+    transform: perspective(1100px) rotateX(7deg) rotateZ(-2deg);
+    transform-origin: center center;
+    overflow: visible;
+}
+
+/* Asphalt with subtle texture and natural lighting */
+.road {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.32),
+            transparent 18%,
+            rgba(255, 255, 255, 0.025) 50%,
+            transparent 82%,
+            rgba(0, 0, 0, 0.28)
+        ),
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 7px,
+            rgba(255, 255, 255, 0.012) 8px,
+            transparent 9px
+        ),
+        linear-gradient(180deg, #292929, #202020 65%, #171717);
+
+    clip-path: polygon(25% 0, 75% 0, 100% 100%, 0 100%);
+
+    box-shadow:
+        0 28px 50px rgba(0, 0, 0, 0.22),
+        inset 0 0 35px rgba(0, 0, 0, 0.2);
+}
+
+/* Road edges */
+.road::before,
+.road::after {
+    width: 2px;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.38),
+        rgba(255, 255, 255, 0.12)
+    );
+}
+
+/* Yellow lane markings */
+.road-line {
+    width: 5px;
+    background: linear-gradient(
+        90deg,
+        #d5a900,
+        #ffe45c 50%,
+        #e6bd24
+    );
+    box-shadow: 0 0 5px rgba(255, 212, 59, 0.12);
+}
+
+/* =========================================
+   MORE CAR-LIKE VEHICLES
+   ========================================= */
+
+.traffic-car {
+    width: 43px;
+    height: 82px;
+    filter: drop-shadow(0 9px 7px rgba(0, 0, 0, 0.4));
+}
+
+/* Car body */
+.car-body {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: 11px 11px 8px 8px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.35),
+            transparent 22%,
+            rgba(255, 255, 255, 0.09) 48%,
+            transparent 75%,
+            rgba(0, 0, 0, 0.4)
+        ),
+        linear-gradient(180deg, #454545, #292929 45%, #171717);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        inset 0 2px 3px rgba(255, 255, 255, 0.13),
+        inset 0 -4px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Front windshield */
+.car-body::before {
+    content: "";
+    position: absolute;
+    top: 17%;
+    left: 17%;
+    width: 66%;
+    height: 23%;
+    border-radius: 5px 5px 3px 3px;
+
+    background: linear-gradient(
+        145deg,
+        #71808a,
+        #27333c 55%,
+        #11191e
+    );
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.12);
+}
+
+/* Rear window */
+.car-body::after {
+    content: "";
+    position: absolute;
+    bottom: 19%;
+    left: 20%;
+    width: 60%;
+    height: 13%;
+    border-radius: 3px;
+
+    background: linear-gradient(
+        180deg,
+        #20282e,
+        #111619
+    );
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Red rear lights */
+.car-light {
+    z-index: 3;
+    width: 6px;
+    height: 12px;
+    bottom: 5px;
+    left: 6px;
+    background: #ff4545;
+
+    box-shadow:
+        24px 0 0 #ff4545,
+        0 0 5px rgba(255, 45, 45, 0.3),
+        24px 0 5px rgba(255, 45, 45, 0.3);
+}
+
+/* Keep the smaller distant cars proportional */
+.car-one {
+    transform: scale(0.42);
+}
+
+.car-two {
+    transform: scale(0.56);
+}
+
+/* Slightly soften the road glow */
+.road-glow {
+    opacity: 0.45;
+    filter: blur(32px);
+}
+
+
+/* =========================================
+   TRAFFICSENSE — VISIBLE VEHICLE COLORS
+   ========================================= */
+
+/* Shared car body */
+.car-body {
+    background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.22),
+        rgba(255, 255, 255, 0.22) 22%,
+        transparent 45%,
+        rgba(0, 0, 0, 0.12) 78%,
+        rgba(0, 0, 0, 0.3)
+    ), #d9dfe5 !important;
+
+    border: 1px solid rgba(255, 255, 255, 0.8) !important;
+    border-radius: 11px 11px 7px 7px !important;
+
+    box-shadow:
+        inset 0 2px 4px rgba(255, 255, 255, 0.8),
+        inset 0 -4px 5px rgba(0, 0, 0, 0.2),
+        0 8px 14px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Windshield */
+.car-body::before {
+    background: linear-gradient(
+        145deg,
+        #b9d9eb,
+        #53798f 60%,
+        #253d4d
+    ) !important;
+
+    border: 1px solid rgba(255, 255, 255, 0.65) !important;
+}
+
+/* Rear window */
+.car-body::after {
+    background: linear-gradient(
+        180deg,
+        #50616d,
+        #25333d
+    ) !important;
+}
+
+/* Car 1 — silver */
+.car-one .car-body {
+    background-color: #e4e8ed !important;
+}
+
+/* Car 2 — electric blue */
+.car-two .car-body {
+    background: linear-gradient(
+        90deg, #0753a6, #3b9bfa 45%, #1760b7
+    ) !important;
+}
+
+/* Car 3 — bright red */
+.car-three .car-body {
+    background: linear-gradient(
+        90deg, #a81722, #ff5555 45%, #c52431
+    ) !important;
+}
+
+/* Car 4 — white */
+.car-four .car-body {
+    background: linear-gradient(
+        90deg, #aeb8c1, #ffffff 45%, #cbd3db
+    ) !important;
+}
+
+/* Keep tail lights visible */
+.car-light {
+    background: #ff2525 !important;
+    box-shadow:
+        24px 0 0 #ff2525,
+        0 0 7px rgba(255, 30, 30, 0.65),
+        24px 0 7px rgba(255, 30, 30, 0.65) !important;
+}
+
+
+/* =========================================
+   FOUR-LANE HIGHWAY
+   ========================================= */
+
+/* Keep the road shape and dark asphalt */
+.road {
+    position: absolute;
+    overflow: hidden;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 8px,
+            rgba(255, 255, 255, 0.018) 9px,
+            transparent 10px
+        ),
+        linear-gradient(90deg, #191919, #292929 50%, #191919) !important;
+}
+
+/* Remove old two-edge lane lines */
+.road::before,
+.road::after {
+    display: none;
+}
+
+/* Four lanes: three dashed dividers */
+.road-line {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    left: auto;
+    transform: none;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(245, 245, 245, 0.85) 0 24px,
+        transparent 24px 43px
+    );
+    box-shadow: none;
+}
+
+/* Lane divider positions */
+.line-one {
+    left: 25%;
+    top: 0;
+    height: 100%;
+}
+
+.line-two {
+    left: 50%;
+    top: 0;
+    height: 100%;
+    width: 5px;
+    background: repeating-linear-gradient(
+        to bottom,
+        #ffe052 0 22px,
+        transparent 22px 40px
+    );
+}
+
+.line-three {
+    left: 75%;
+    top: 0;
+    height: 100%;
+}
+
+/* Four vehicles — one per lane */
+.car-one {
+    left: 18%;
+    top: 14%;
+    transform: scale(0.48);
+}
+
+.car-two {
+    left: 35%;
+    top: 36%;
+    transform: scale(0.58);
+}
+
+.car-three {
+    left: 59%;
+    top: 52%;
+    transform: scale(0.72);
+}
+
+.car-four {
+    left: 79%;
+    top: 68%;
+    transform: scale(0.85);
+}
+
+
+/* Live Traffic Intelligence in navbar */
+.live-traffic-nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+
+    background: #111111;
+    color: #ffd43b;
+
+    border: 1px solid rgba(255, 212, 59, 0.35);
+
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+    white-space: nowrap;
+}
+
+/* Hide the old label above the road */
+.visual-label {
+    display: none !important;
+}
+
+
+/* Navbar buttons — black background, yellow text */
+.nav-links .nav-button {
+    background: #111111 !important;
+    color: #ffd43b !important;
+    border: 1px solid #111111;
+    padding: 12px 16px;
+    border-radius: 0;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* Remove the old active underline */
+.nav-links .nav-button::after {
+    display: none !important;
+}
+
+/* Hover effect for inactive options */
+.nav-links .nav-button:hover:not(.active) {
+    background: #292929 !important;
+    color: #ffd43b !important;
+}
+
+/* Selected navbar option — yellow background, black text */
+.nav-links .nav-button.active {
+    background: #ffd43b !important;
+    color: #111111 !important;
+    border-color: #ffd43b !important;
+    font: 16px;
+}
+
+/* Keep selected text black */
+.nav-links .nav-button.active:hover {
+    background: #ffd43b !important;
+    color: #111111 !important;
+    font: 16px;
+}

@@ -1,0 +1,3389 @@
+<html lang="en"><head>
+
+
+
+    <meta charset="UTF-8">
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+    <title>
+
+        TrafficSense | Traffic Prediction
+
+    </title>
+
+
+
+
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+
+
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+
+
+
+
+
+    <!-- Main CSS -->
+
+    <link rel="stylesheet" href="style.css">
+
+
+
+
+
+    <!-- Chart.js -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+</head>
+
+
+
+
+
+<body>
+
+
+
+
+
+    <!-- =========================================================
+
+         NAVIGATION BAR
+
+    ========================================================== -->
+
+
+
+    <nav class="navbar">
+
+
+
+        <div class="nav-brand">
+
+
+
+            <div class="brand-mark">
+
+                TS
+
+            </div>
+
+
+
+            <div class="brand-text">
+
+
+
+                <span class="brand-name">
+
+                    TRAFFICSENSE
+
+                </span>
+
+
+
+                <span class="brand-subtitle">
+
+                    TRAFFIC INTELLIGENCE
+
+                </span>
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+        <div class="nav-links">
+
+
+
+            <button class="nav-button active" onclick="showDashboard()">
+
+                Dashboard
+
+            </button>
+
+
+
+
+
+            <button class="nav-button" onclick="showHistory()">
+
+                Prediction History
+
+            </button>
+
+
+
+
+
+            <button class="nav-button" onclick="showComparison()">
+
+                Model Comparison
+
+            </button>
+
+
+
+        </div>
+
+
+
+
+
+        <div class="nav-status live-traffic-nav">
+            LIVE TRAFFIC INTELLIGENCE
+        </div>
+
+
+    </nav>
+
+
+
+
+
+
+
+    <!-- =========================================================
+
+         MAIN DASHBOARD
+
+    ========================================================== -->
+
+
+
+    <main class="main-container">
+
+
+
+
+
+        <!-- =====================================================
+
+             HERO / PREDICTION SECTION
+
+        ====================================================== -->
+
+
+
+        <section class="hero-section">
+
+
+
+
+
+            <div class="hero-content">
+
+
+
+
+
+                <div class="eyebrow">
+
+
+
+                    <span></span>
+
+
+
+                    MACHINE LEARNING TRAFFIC ANALYSIS
+
+
+
+                </div>
+
+
+
+
+
+                <h1>
+
+
+
+                    Predict traffic.
+
+                    <br>
+
+
+
+                    <span class="outline-text">
+
+                        Understand movement.
+
+                    </span>
+
+
+
+                </h1>
+
+
+
+
+
+                <p class="hero-description">
+
+
+
+                    TrafficSense uses machine learning and
+
+                    historical traffic patterns to estimate
+
+                    traffic volume and analyse road conditions.
+
+
+
+                </p>
+
+
+
+
+
+                <!-- =================================================
+
+                     INPUT PANEL
+
+                ================================================== -->
+
+
+
+                <div class="prediction-panel">
+
+
+
+
+
+                    <div class="panel-header">
+
+
+
+                        <div>
+
+
+
+                            <span class="panel-label">
+
+                                TRAFFIC PREDICTION
+
+                            </span>
+
+
+
+                            <h2>
+
+                                Select date &amp; time
+
+                            </h2>
+
+
+
+                        </div>
+
+
+
+
+
+                        <div class="panel-number">
+
+                            01
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+
+                    <div class="input-grid">
+
+
+
+
+
+                        <!-- DATE -->
+
+
+
+                        <div class="input-group">
+
+
+
+                            <label for="dateInput">
+
+                                DATE
+
+                            </label>
+
+
+
+                            <input type="date" id="dateInput">
+
+
+
+                        </div>
+
+
+
+
+
+                        <!-- TIME -->
+
+
+
+                        <div class="input-group">
+
+
+
+                            <label for="timeInput">
+
+                                TIME
+
+                            </label>
+
+
+
+                            <input type="time" id="timeInput">
+
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+
+                    <button class="predict-button" onclick="predictTraffic()">
+
+
+
+                        <span>
+
+                            PREDICT TRAFFIC
+
+                        </span>
+
+
+
+                        <span class="button-arrow">
+
+                            →
+
+                        </span>
+
+
+
+                    </button>
+
+
+
+                </div>
+
+
+
+
+
+                <!-- =================================================
+
+                     RESULT CARD
+
+                ================================================== -->
+
+
+
+                <div class="result-card" id="resultCard">
+
+
+
+
+
+                    <div class="result-card-top">
+
+
+
+                        <div>
+
+
+
+                            <span class="result-label">
+
+                                PREDICTED TRAFFIC VOLUME
+
+                            </span>
+
+
+
+                            <div class="result-value" id="resultTitle">
+
+                                —
+
+                                <span>
+
+                                    vehicles/hour
+
+                                </span>
+
+                            </div>
+
+
+
+                        </div>
+
+
+
+
+
+                        <div class="traffic-badge">
+
+                            WAITING
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+
+                    <div class="result-details">
+
+
+
+
+
+                        <div class="result-detail">
+
+
+
+                            <span>
+
+                                ACTUAL VOLUME
+
+                            </span>
+
+
+
+                            <strong id="actualValue">
+
+                                —
+
+                            </strong>
+
+
+
+                        </div>
+
+
+
+
+
+                        <div class="result-detail">
+
+
+
+                            <span>
+
+                                PREDICTION ERROR
+
+                            </span>
+
+
+
+                            <strong id="errorValue">
+
+                                —
+
+                            </strong>
+
+
+
+                        </div>
+
+
+
+
+
+                    </div>
+
+
+
+
+
+                    <div class="result-card-footer">
+
+
+
+                        <span>
+
+                            LIGHTGBM MODEL
+
+                        </span>
+
+
+
+                        <span>
+
+                            R² 0.9846
+
+                        </span>
+
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <!-- =====================================================
+
+                 VISUAL TRAFFIC SECTION
+
+            ====================================================== -->
+
+
+
+            <div class="visual-section">
+
+
+
+
+
+                <div class="visual-label">
+
+                    LIVE TRAFFIC INTELLIGENCE
+
+                </div>
+
+
+
+
+
+                <div class="road-art">
+
+
+
+
+
+                    <div class="road-glow"></div>
+
+
+
+
+
+                    <div class="road">
+
+
+
+                        <div class="road-line line-one"></div>
+
+
+
+                        <div class="road-line line-two"></div>
+
+
+
+                        <div class="road-line line-three"></div>
+
+
+
+                    </div>
+
+
+
+
+
+                    <div class="traffic-car car-one">
+
+
+
+                        <div class="car-body"></div>
+
+
+
+                        <div class="car-light"></div>
+
+
+
+                    </div>
+
+
+
+
+
+                    <div class="traffic-car car-two">
+
+
+
+                        <div class="car-body"></div>
+
+
+
+                        <div class="car-light"></div>
+
+
+
+                    </div>
+
+
+
+
+
+                    <div class="traffic-car car-three">
+
+
+
+                        <div class="car-body"></div>
+
+
+
+                        <div class="car-light"></div>
+
+
+
+                    </div>
+
+
+
+
+
+                    <div class="traffic-car car-four">
+
+
+
+                        <div class="car-body"></div>
+
+
+
+                        <div class="car-light"></div>
+
+
+
+                    </div>
+
+
+
+
+
+                </div>
+
+
+
+
+
+                <div class="location-card">
+
+                    <div class="location-card-main">
+
+                        <div class="location-pin" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"></path>
+                                <circle cx="12" cy="10" r="2.5"></circle>
+                            </svg>
+                        </div>
+
+                        <div class="location-details">
+                            <span class="location-eyebrow">TRAFFIC MONITORING LOCATION</span>
+                            <h3>I-94</h3>
+                            <p>Minnesota, United States</p>
+                        </div>
+
+                        <div class="location-direction">
+                            <span class="direction-dot"></span>
+                            WESTBOUND
+                        </div>
+
+                    </div>
+
+                    <div class="location-card-footer">
+                        <span>HISTORICAL TRAFFIC CORRIDOR</span>
+                        <span>2012 — 2018</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================================
+
+            ANALYTICS OVERVIEW
+
+        ========================================================== -->
+
+
+
+        <section class="analytics-section">
+
+
+
+
+
+            <div class="analytics-header">
+
+
+
+                <div>
+
+
+
+                    <div class="eyebrow">
+
+
+
+                        <span></span>
+
+
+
+                        ORACLE ANALYTICS
+
+
+
+                    </div>
+
+
+
+                    <h2>
+
+                        Traffic intelligence.
+
+                    </h2>
+
+
+
+                    <p>
+
+                        A database-backed view of traffic behaviour,
+
+                        prediction performance and model efficiency.
+
+                    </p>
+
+
+
+                </div>
+
+
+
+
+
+                <div class="analytics-label">
+
+                    DATA INSIGHTS
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <!-- =====================================================
+
+                 TRAFFIC STATISTICS
+
+            ====================================================== -->
+
+
+
+            <div class="analytics-stats">
+
+
+
+
+
+                <div class="analytics-stat-card">
+
+
+
+                    <div class="analytics-stat-top">
+
+
+
+                        <span>
+
+                            AVERAGE TRAFFIC
+
+                        </span>
+
+
+
+                        <span>
+
+                            01
+
+                        </span>
+
+
+
+                    </div>
+
+
+
+                    <strong id="averageTraffic">
+
+                        —
+
+                    </strong>
+
+
+
+                    <p>
+
+                        vehicles/hour
+
+                    </p>
+
+
+
+                </div>
+
+
+
+
+
+
+
+                <div class="analytics-stat-card">
+
+
+
+                    <div class="analytics-stat-top">
+
+
+
+                        <span>
+
+                            MINIMUM TRAFFIC
+
+                        </span>
+
+
+
+                        <span>
+
+                            02
+
+                        </span>
+
+
+
+                    </div>
+
+
+
+                    <strong id="minimumTraffic">
+
+                        —
+
+                    </strong>
+
+
+
+                    <p>
+
+                        lowest recorded volume
+
+                    </p>
+
+
+
+                </div>
+
+
+
+
+
+
+
+                <div class="analytics-stat-card">
+
+
+
+                    <div class="analytics-stat-top">
+
+
+
+                        <span>
+
+                            MAXIMUM TRAFFIC
+
+                        </span>
+
+
+
+                        <span>
+
+                            03
+
+                        </span>
+
+
+
+                    </div>
+
+
+
+                    <strong id="maximumTraffic">
+
+                        —
+
+                    </strong>
+
+
+
+                    <p>
+
+                        highest recorded volume
+
+                    </p>
+
+
+
+                </div>
+
+
+
+
+
+
+
+                <div class="analytics-stat-card">
+
+
+
+                    <div class="analytics-stat-top">
+
+
+
+                        <span>
+
+                            BUSIEST HOUR
+
+                        </span>
+
+
+
+                        <span>
+
+                            04
+
+                        </span>
+
+
+
+                    </div>
+
+
+
+                    <strong id="busiestHour">
+
+                        —
+
+                    </strong>
+
+
+
+                    <p id="busiestHourValue">
+
+                        average traffic
+
+                    </p>
+
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <!-- =====================================================
+
+                 WEEKDAY / WEEKEND ANALYSIS
+
+            ====================================================== -->
+
+
+
+            <div class="traffic-analysis-grid">
+
+
+
+
+
+                <div class="analysis-card">
+
+
+
+                    <div class="analysis-card-header">
+
+
+
+                        <div>
+
+
+
+                            <span class="analysis-label">
+
+                                WEEKDAY TRAFFIC
+
+                            </span>
+
+
+
+                            <h3>
+
+                                Working days.
+
+                            </h3>
+
+
+
+                        </div>
+
+
+
+                        <span class="analysis-number">
+
+                            01
+
+                        </span>
+
+
+
+                    </div>
+
+
+
+
+
+                    <div class="analysis-value">
+
+
+
+                        <strong id="weekdayAverage">
+
+                            —
+
+                        </strong>
+
+
+
+                        <span>
+
+                            vehicles/hour
+
+                        </span>
+
+
+
+                    </div>
+
+
+
+
+
+                    <div class="analysis-bar">
+
+
+
+                        <div class="analysis-bar-fill" id="weekdayBar"></div>
+
+
+
+                    </div>
+
+
+
+
+
+                    <p>
+
+                        Average traffic volume recorded
+
+                        across weekdays.
+
+                    </p>
+
+
+
+                </div>
+
+
+
+
+
+
+
+                <div class="analysis-card">
+
+
+
+                    <div class="analysis-card-header">
+
+
+
+                        <div>
+
+
+
+                            <span class="analysis-label">
+
+                                WEEKEND TRAFFIC
+
+                            </span>
+
+
+
+                            <h3>
+
+                                Weekend movement.
+
+                            </h3>
+
+
+
+                        </div>
+
+
+
+                        <span class="analysis-number">
+
+                            02
+
+                        </span>
+
+
+
+                    </div>
+
+
+
+
+
+                    <div class="analysis-value">
+
+
+
+                        <strong id="weekendAverage">
+
+                            —
+
+                        </strong>
+
+
+
+                        <span>
+
+                            vehicles/hour
+
+                        </span>
+
+
+
+                    </div>
+
+
+
+
+
+                    <div class="analysis-bar">
+
+
+
+                        <div class="analysis-bar-fill" id="weekendBar"></div>
+
+
+
+                    </div>
+
+
+
+
+
+                    <p>
+
+                        Average traffic volume recorded
+
+                        across weekends.
+
+                    </p>
+
+
+
+                </div>
+
+
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <!-- =====================================================
+
+                 BUSIEST HOUR
+
+            ====================================================== -->
+
+
+
+            <div class="busiest-hour-card">
+
+
+
+
+
+                <div class="busiest-hour-left">
+
+
+
+                    <span class="analysis-label">
+
+                        PEAK TRAFFIC PERIOD
+
+                    </span>
+
+
+
+                    <h3>
+
+                        The road gets busiest at
+
+                        <span id="peakHourText">
+
+                            —
+
+                        </span>.
+
+                    </h3>
+
+
+
+                    <p>
+
+                        This represents the hour with the
+
+                        highest average traffic volume in
+
+                        the processed dataset.
+
+                    </p>
+
+
+
+                </div>
+
+
+
+
+
+                <div class="busiest-hour-value">
+
+
+
+                    <strong id="peakTrafficValue">
+
+                        —
+
+                    </strong>
+
+
+
+                    <span>
+
+                        VEHICLES / HOUR
+
+                    </span>
+
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <!-- =====================================================
+
+                 MODEL PERFORMANCE
+
+            ====================================================== -->
+
+
+
+            <div class="model-performance-section">
+
+
+
+
+
+                <div class="section-heading-row">
+
+
+
+                    <div>
+
+
+
+                        <div class="eyebrow">
+
+
+
+                            <span></span>
+
+
+
+                            MODEL PERFORMANCE
+
+
+
+                        </div>
+
+
+
+                        <h2>
+
+                            Which model performs better?
+
+                        </h2>
+
+
+
+                        <p>
+
+                            Measured on the unseen chronological
+
+                            test dataset.
+
+                        </p>
+
+
+
+                    </div>
+
+
+
+
+
+                    <div class="model-heading-tag">
+
+                        LIGHTGBM vs XGBOOST
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+
+
+                <div class="model-cards" id="modelPerformanceCards">
+
+
+
+
+
+                    <!-- LightGBM -->
+
+
+
+                    <div class="model-card">
+
+
+
+                        <div class="model-card-top">
+
+
+
+                            <span class="model-label">
+
+                                MODEL 01
+
+                            </span>
+
+
+
+                            <span class="model-status">
+
+                                SELECTED
+
+                            </span>
+
+
+
+                        </div>
+
+
+
+
+
+                        <h3>
+
+                            LightGBM
+
+                        </h3>
+
+
+
+
+
+                        <p class="model-description">
+
+                            Gradient boosting model optimized
+
+                            for structured tabular data.
+
+                        </p>
+
+
+
+
+
+                        <div class="model-metrics">
+
+
+
+
+
+                            <div class="model-metric">
+
+
+
+                                <span>
+
+                                    TEST MAE
+
+                                </span>
+
+
+
+                                <strong id="lightgbmMae">
+
+                                    —
+
+                                </strong>
+
+
+
+                            </div>
+
+
+
+
+
+                            <div class="model-metric">
+
+
+
+                                <span>
+
+                                    TEST RMSE
+
+                                </span>
+
+
+
+                                <strong id="lightgbmRmse">
+
+                                    —
+
+                                </strong>
+
+
+
+                            </div>
+
+
+
+
+
+                            <div class="model-metric">
+
+
+
+                                <span>
+
+                                    TEST R²
+
+                                </span>
+
+
+
+                                <strong id="lightgbmR2">
+
+                                    —
+
+                                </strong>
+
+
+
+                            </div>
+
+
+
+
+
+                            <div class="model-metric">
+
+
+
+                                <span>
+
+                                    TRAINING TIME
+
+                                </span>
+
+
+
+                                <strong id="lightgbmTime">
+
+                                    —
+
+                                </strong>
+
+
+
+                            </div>
+
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+
+
+
+                    <!-- XGBoost -->
+
+
+
+                    <div class="model-card">
+
+
+
+                        <div class="model-card-top">
+
+
+
+                            <span class="model-label">
+
+                                MODEL 02
+
+                            </span>
+
+
+
+                            <span class="model-status secondary">
+
+                                COMPARED
+
+                            </span>
+
+
+
+                        </div>
+
+
+
+
+
+                        <h3>
+
+                            XGBoost
+
+                        </h3>
+
+
+
+
+
+                        <p class="model-description">
+
+                            Powerful gradient boosting model
+
+                            for nonlinear regression.
+
+                        </p>
+
+
+
+
+
+                        <div class="model-metrics">
+
+
+
+
+
+                            <div class="model-metric">
+
+
+
+                                <span>
+
+                                    TEST MAE
+
+                                </span>
+
+
+
+                                <strong id="xgboostMae">
+
+                                    —
+
+                                </strong>
+
+
+
+                            </div>
+
+
+
+
+
+                            <div class="model-metric">
+
+
+
+                                <span>
+
+                                    TEST RMSE
+
+                                </span>
+
+
+
+                                <strong id="xgboostRmse">
+
+                                    —
+
+                                </strong>
+
+
+
+                            </div>
+
+
+
+
+
+                            <div class="model-metric">
+
+
+
+                                <span>
+
+                                    TEST R²
+
+                                </span>
+
+
+
+                                <strong id="xgboostR2">
+
+                                    —
+
+                                </strong>
+
+
+
+                            </div>
+
+
+
+
+
+                            <div class="model-metric">
+
+
+
+                                <span>
+
+                                    TRAINING TIME
+
+                                </span>
+
+
+
+                                <strong id="xgboostTime">
+
+                                    —
+
+                                </strong>
+
+
+
+                            </div>
+
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+
+                </div>
+
+
+
+
+
+
+
+                <!-- =================================================
+
+                     MODEL CONCLUSION
+
+                ================================================== -->
+
+
+
+                <div class="model-conclusion">
+
+
+
+                    <div class="conclusion-mark">
+
+                        ✓
+
+                    </div>
+
+
+
+
+
+                    <div>
+
+
+
+                        <span>
+
+                            FINAL MODEL
+
+                        </span>
+
+
+
+                        <h3>
+
+                            LightGBM
+
+                        </h3>
+
+
+
+                        <p>
+
+                            LightGBM was selected because it achieved
+
+                            better overall test RMSE, R² and training
+
+                            efficiency, while XGBoost achieved a
+
+                            slightly lower test MAE.
+
+                        </p>
+
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+        </section>
+
+
+
+
+
+
+
+        <!-- =========================================================
+
+             PREDICTION HISTORY PAGE
+
+        ========================================================== -->
+
+
+
+        <section class="history-page" id="historyPage">
+
+
+
+            <div class="history-page-inner">
+
+
+
+
+
+                <div class="history-header">
+
+
+
+                    <div>
+
+
+
+                        <div class="eyebrow">
+
+
+
+                            <span></span>
+
+
+
+                            ORACLE PREDICTION LOG
+
+
+
+                        </div>
+
+
+
+                        <h2>
+
+                            Prediction history.
+
+                        </h2>
+
+
+
+                        <p>
+
+                            Every prediction generated through
+
+                            TrafficSense is stored in Oracle Database.
+
+                        </p>
+
+
+
+                    </div>
+
+
+
+
+
+                    <button type="button" class="history-refresh-button" id="historyRefreshButton" onclick="refreshPredictionHistory()">
+
+                        <span class="refresh-icon">↻</span>
+
+                        <span id="refreshButtonText">REFRESH HISTORY</span>
+
+                    </button>
+
+
+
+
+
+                </div>
+
+
+
+
+
+
+
+                <div class="history-summary">
+
+
+
+
+
+                    <div class="history-summary-card">
+
+
+
+                        <span>
+
+                            TOTAL PREDICTIONS
+
+                        </span>
+
+
+
+                        <strong id="historyTotal">
+
+                            —
+
+                        </strong>
+
+
+
+                    </div>
+
+
+
+
+
+                    <div class="history-summary-card">
+
+
+
+                        <span>
+
+                            AVERAGE ERROR
+
+                        </span>
+
+
+
+                        <strong id="historyAverageError">
+
+                            —
+
+                        </strong>
+
+
+
+                    </div>
+
+
+
+
+
+                    <div class="history-summary-card">
+
+
+
+                        <span>
+
+                            LAST PREDICTION
+
+                        </span>
+
+
+
+                        <strong id="historyLastPrediction">
+
+                            —
+
+                        </strong>
+
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+
+
+                <div class="history-table-wrapper">
+
+
+
+                    <div class="history-table-header">
+
+
+
+                        <span>
+
+                            DATE &amp; TIME
+
+                        </span>
+
+
+
+                        <span>
+
+                            ACTUAL
+
+                        </span>
+
+
+
+                        <span>
+
+                            PREDICTED
+
+                        </span>
+
+
+
+                        <span>
+
+                            ERROR
+
+                        </span>
+
+
+
+                        <span>
+
+                            STATUS
+
+                        </span>
+
+
+
+                    </div>
+
+
+
+
+
+                    <div id="historyTableBody" class="history-table-body">
+
+
+
+                        <div class="history-loading">
+
+
+
+                            Loading prediction history...
+
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+
+
+                <button class="back-dashboard-button" onclick="showDashboard()">
+
+                    ← Back to Dashboard
+
+                </button>
+
+
+
+
+
+            </div>
+
+
+
+        </section>
+
+
+
+
+
+                <!-- =========================================================
+
+             MODEL COMPARISON PAGE
+
+        ========================================================== -->
+
+
+
+        <section class="comparison-page" id="comparisonPage">
+
+
+
+            <div class="comparison-page-inner">
+
+
+
+
+
+                <!-- =================================================
+
+                     COMPARISON HEADER
+
+                ================================================== -->
+
+
+
+                <div class="comparison-page-top">
+
+
+
+                    <div>
+
+
+
+                        <div class="eyebrow">
+
+
+
+                            <span></span>
+
+
+
+                            MACHINE LEARNING ANALYSIS
+
+
+
+                        </div>
+
+
+
+
+
+                        <h2>
+
+                            Model comparison.
+
+                        </h2>
+
+
+
+
+
+                        <p>
+
+                            Compare LightGBM and XGBoost using the
+
+                            measured performance of the TrafficSense
+
+                            prediction system.
+
+                        </p>
+
+
+
+                    </div>
+
+
+
+
+
+                    <div class="comparison-model-label">
+
+
+
+                        LIGHTGBM
+
+                        <span>vs</span>
+
+                        XGBOOST
+
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+
+
+                <!-- =================================================
+
+                     COMPARISON GRAPHS
+
+                ================================================== -->
+
+
+
+                <div class="comparison-grid">
+
+
+
+
+
+                    <!-- =================================================
+
+                         TEST MAE
+
+                    ================================================== -->
+
+
+
+                    <div class="comparison-card">
+
+
+
+                        <div class="comparison-card-header">
+
+
+
+                            <div>
+
+
+
+                                <span class="comparison-label">
+
+                                    ERROR METRIC 01
+
+                                </span>
+
+
+
+                                <h3>
+
+                                    Test MAE
+
+                                </h3>
+
+
+
+                            </div>
+
+
+
+
+
+                            <span class="comparison-icon">
+
+                                MAE
+
+                            </span>
+
+
+
+                        </div>
+
+
+
+
+
+                        <p class="comparison-description">
+
+
+
+                            Lower is better.
+
+                            Measures the average absolute
+
+                            prediction error in vehicles per hour.
+
+
+
+                        </p>
+
+
+
+
+
+                        <div class="chart-container">
+
+
+
+                            <canvas id="maeChart"></canvas>
+
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+
+
+
+                    <!-- =================================================
+
+                         TEST RMSE
+
+                    ================================================== -->
+
+
+
+                    <div class="comparison-card">
+
+
+
+                        <div class="comparison-card-header">
+
+
+
+                            <div>
+
+
+
+                                <span class="comparison-label">
+
+                                    ERROR METRIC 02
+
+                                </span>
+
+
+
+                                <h3>
+
+                                    Test RMSE
+
+                                </h3>
+
+
+
+                            </div>
+
+
+
+
+
+                            <span class="comparison-icon">
+
+                                RMSE
+
+                            </span>
+
+
+
+                        </div>
+
+
+
+
+
+                        <p class="comparison-description">
+
+
+
+                            Lower is better.
+
+                            Penalizes larger prediction errors
+
+                            more strongly.
+
+
+
+                        </p>
+
+
+
+
+
+                        <div class="chart-container">
+
+
+
+                            <canvas id="rmseChart"></canvas>
+
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+
+
+
+                    <!-- =================================================
+
+                         TEST R²
+
+                    ================================================== -->
+
+
+
+                    <div class="comparison-card">
+
+
+
+                        <div class="comparison-card-header">
+
+
+
+                            <div>
+
+
+
+                                <span class="comparison-label">
+
+                                    PERFORMANCE METRIC 01
+
+                                </span>
+
+
+
+                                <h3>
+
+                                    Test R²
+
+                                </h3>
+
+
+
+                            </div>
+
+
+
+
+
+                            <span class="comparison-icon">
+
+                                R²
+
+                            </span>
+
+
+
+                        </div>
+
+
+
+
+
+                        <p class="comparison-description">
+
+
+
+                            Higher is better.
+
+                            Measures how much variation in traffic
+
+                            volume is explained by the model.
+
+
+
+                        </p>
+
+
+
+
+
+                        <div class="chart-container">
+
+
+
+                            <canvas id="r2Chart"></canvas>
+
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+
+
+
+                    <!-- =================================================
+
+                         TRAINING TIME
+
+                    ================================================== -->
+
+
+
+                    <div class="comparison-card">
+
+
+
+                        <div class="comparison-card-header">
+
+
+
+                            <div>
+
+
+
+                                <span class="comparison-label">
+
+                                    EFFICIENCY METRIC
+
+                                </span>
+
+
+
+                                <h3>
+
+                                    Training Time
+
+                                </h3>
+
+
+
+                            </div>
+
+
+
+
+
+                            <span class="comparison-icon">
+
+                                SEC
+
+                            </span>
+
+
+
+                        </div>
+
+
+
+
+
+                        <p class="comparison-description">
+
+
+
+                            Lower is better.
+
+                            Shows the approximate time required
+
+                            to train each model.
+
+
+
+                        </p>
+
+
+
+
+
+                        <div class="chart-container">
+
+
+
+                            <canvas id="trainingTimeChart"></canvas>
+
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+
+                </div>
+
+
+
+
+
+
+
+                <!-- =================================================
+
+                     MODEL SELECTION CONCLUSION
+
+                ================================================== -->
+
+
+
+                <div class="comparison-conclusion">
+
+
+
+
+
+                    <div class="eyebrow">
+
+
+
+                        <span></span>
+
+
+
+                        FINAL MODEL SELECTION
+
+
+
+                    </div>
+
+
+
+
+
+                    <h3>
+
+                        LightGBM selected as the final model.
+
+                    </h3>
+
+
+
+
+
+                    <p>
+
+
+
+                        LightGBM achieved better overall performance
+
+                        considering test RMSE, test R² and training
+
+                        efficiency, while XGBoost achieved a slightly
+
+                        lower test MAE.
+
+
+
+                    </p>
+
+
+
+                </div>
+
+
+
+
+
+
+
+                <button class="back-dashboard-button" onclick="showDashboard()">
+
+
+
+                    ← Back to Dashboard
+
+
+
+                </button>
+
+
+
+
+
+            </div>
+
+
+
+        </section>
+
+
+
+
+
+                <!-- =========================================================
+
+             ORACLE ANALYTICS
+
+        ========================================================== -->
+
+
+
+        <section class="oracle-analytics-section">
+
+
+
+
+
+            <div class="oracle-analytics-header">
+
+
+
+                <div>
+
+
+
+                    <div class="eyebrow">
+
+
+
+                        <span></span>
+
+
+
+                        DATABASE INTELLIGENCE
+
+
+
+                    </div>
+
+
+
+
+
+                    <h2>
+
+                        Oracle analytics.
+
+                    </h2>
+
+
+
+
+
+                    <p>
+
+                        Traffic statistics and model performance
+
+                        retrieved directly from Oracle Database.
+
+                    </p>
+
+
+
+                </div>
+
+
+
+
+
+                <div class="oracle-label">
+
+                    ORACLE DATABASE 21c XE
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <!-- =====================================================
+
+                 DATABASE STATISTICS
+
+            ====================================================== -->
+
+
+
+            <div class="oracle-stats-grid">
+
+
+
+
+
+                <div class="oracle-stat-card">
+
+
+
+                    <span>
+
+                        TOTAL RECORDS
+
+                    </span>
+
+
+
+                    <strong id="oracleTotalRecords">
+
+                        —
+
+                    </strong>
+
+
+
+                    <small>
+
+                        TRAFFIC DATA
+
+                    </small>
+
+
+
+                </div>
+
+
+
+
+
+                <div class="oracle-stat-card">
+
+
+
+                    <span>
+
+                        AVERAGE TRAFFIC
+
+                    </span>
+
+
+
+                    <strong id="oracleAverageTraffic">
+
+                        —
+
+                    </strong>
+
+
+
+                    <small>
+
+                        VEHICLES / HOUR
+
+                    </small>
+
+
+
+                </div>
+
+
+
+
+
+                <div class="oracle-stat-card">
+
+
+
+                    <span>
+
+                        MINIMUM
+
+                    </span>
+
+
+
+                    <strong id="oracleMinimumTraffic">
+
+                        —
+
+                    </strong>
+
+
+
+                    <small>
+
+                        LOWEST VOLUME
+
+                    </small>
+
+
+
+                </div>
+
+
+
+
+
+                <div class="oracle-stat-card">
+
+
+
+                    <span>
+
+                        MAXIMUM
+
+                    </span>
+
+
+
+                    <strong id="oracleMaximumTraffic">
+
+                        —
+
+                    </strong>
+
+
+
+                    <small>
+
+                        HIGHEST VOLUME
+
+                    </small>
+
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <!-- =====================================================
+
+                 ORACLE MODEL PERFORMANCE TABLE
+
+            ====================================================== -->
+
+
+
+            <div class="oracle-model-section">
+
+
+
+
+
+                <div class="oracle-section-heading">
+
+
+
+                    <div>
+
+
+
+                        <span class="analysis-label">
+
+                            MODEL PERFORMANCE
+
+                        </span>
+
+
+
+                        <h3>
+
+                            Stored model results.
+
+                        </h3>
+
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+                <div class="oracle-model-table-wrapper">
+
+
+
+                    <table class="oracle-model-table">
+
+
+
+                        <thead>
+
+
+
+                            <tr>
+
+
+
+                                <th>
+
+                                    MODEL
+
+                                </th>
+
+
+
+                                <th>
+
+                                    TEST MAE
+
+                                </th>
+
+
+
+                                <th>
+
+                                    TEST RMSE
+
+                                </th>
+
+
+
+                                <th>
+
+                                    TEST R²
+
+                                </th>
+
+
+
+                                <th>
+
+                                    TRAINING TIME
+
+                                </th>
+
+
+
+                            </tr>
+
+
+
+                        </thead>
+
+
+
+
+
+                        <tbody id="oracleModelTableBody">
+
+
+
+                            <tr>
+
+
+
+                                <td colspan="5">
+
+                                    Loading model performance...
+
+                                </td>
+
+
+
+                            </tr>
+
+
+
+                        </tbody>
+
+
+
+                    </table>
+
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <!-- =====================================================
+
+                 DATABASE FOOTNOTE
+
+            ====================================================== -->
+
+
+
+            <div class="oracle-footer-note">
+
+
+
+                <span class="status-dot"></span>
+
+
+
+                <p>
+
+                    Analytics are retrieved from the TrafficSense
+
+                    Oracle database through the FastAPI backend.
+
+                </p>
+
+
+
+            </div>
+
+
+
+
+
+        </section>
+
+
+
+
+
+
+
+    </main>
+
+
+
+
+
+
+
+    <!-- =========================================================
+
+         FOOTER
+
+    ========================================================== -->
+
+
+
+    <footer class="footer">
+
+
+
+        <div class="footer-inner">
+
+
+
+
+
+            <div class="footer-brand">
+
+
+
+                <div class="footer-logo">
+
+                    TRAFFICSENSE
+
+                </div>
+
+
+
+                <p>
+
+                    Traffic Volume Prediction and Analysis
+
+                    Using Machine Learning and Oracle Database.
+
+                </p>
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <div class="footer-links">
+
+
+
+                <button onclick="showDashboard()" class="footer-link">
+
+                    Dashboard
+
+                </button>
+
+
+
+
+
+                <button onclick="showHistory()" class="footer-link">
+
+                    Prediction History
+
+                </button>
+
+
+
+
+
+                <button onclick="showComparison()" class="footer-link">
+
+                    Model Comparison
+
+                </button>
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <div class="footer-tech">
+
+
+
+                <span>
+
+                    PYTHON
+
+                </span>
+
+
+
+                <span>
+
+                    LIGHTGBM
+
+                </span>
+
+
+
+                <span>
+
+                    XGBOOST
+
+                </span>
+
+
+
+                <span>
+
+                    ORACLE
+
+                </span>
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+
+
+        <div class="footer-bottom">
+
+
+
+            <span>
+
+                TrafficSense
+
+            </span>
+
+
+
+            <span>
+
+                Machine Learning + Oracle Database
+
+            </span>
+
+
+
+        </div>
+
+
+
+    </footer>
+
+
+
+
+
+
+
+    <!-- =========================================================
+
+         JAVASCRIPT
+
+    ========================================================== -->
+
+
+
+    <script src="script.js"></script>
+
+
+
+
+
+
+
+
+
+</body></html>

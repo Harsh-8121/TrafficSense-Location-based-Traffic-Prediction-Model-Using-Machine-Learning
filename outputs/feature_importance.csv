@@ -1,0 +1,74 @@
+Feature,Importance
+hour,2001
+traffic_lag_1h,1825
+traffic_lag_2h,1013
+day_of_week,908
+traffic_lag_24h,626
+temp,599
+day,395
+month,390
+traffic_lag_168h,377
+year,294
+is_peak_hour,195
+clouds_all,146
+rain_1h,64
+weather_main_Clouds,33
+weather_description_snow,25
+weather_description_light snow,13
+weather_main_Mist,13
+weather_main_Clear,12
+weather_main_Rain,11
+snow_1h,10
+weather_description_scattered clouds,9
+weather_description_broken clouds,7
+weather_description_heavy intensity rain,6
+weather_main_Thunderstorm,5
+weather_description_sky is clear,5
+weather_description_proximity thunderstorm,4
+weather_description_moderate rain,3
+weather_description_overcast clouds,3
+weather_main_Haze,2
+weather_description_Sky is Clear,2
+weather_description_heavy snow,1
+weather_description_few clouds,1
+weather_description_light rain,1
+weather_main_Snow,1
+holiday_Veterans Day,0
+holiday_State Fair,0
+holiday_New Years Day,0
+holiday_Memorial Day,0
+holiday_Thanksgiving Day,0
+holiday_Christmas Day,0
+is_weekend,0
+weather_description_drizzle,0
+weather_description_SQUALLS,0
+weather_main_Smoke,0
+weather_main_Squall,0
+weather_main_Drizzle,0
+holiday_Washingtons Birthday,0
+weather_main_Fog,0
+holiday_Columbus Day,0
+holiday_Independence Day,0
+holiday_Labor Day,0
+holiday_Martin Luther King Jr Day,0
+weather_description_haze,0
+weather_description_light intensity drizzle,0
+weather_description_heavy intensity drizzle,0
+weather_description_freezing rain,0
+weather_description_fog,0
+weather_description_mist,0
+weather_description_light intensity shower rain,0
+weather_description_light rain and snow,0
+weather_description_light shower snow,0
+weather_description_proximity thunderstorm with rain,0
+weather_description_proximity thunderstorm with drizzle,0
+weather_description_shower drizzle,0
+weather_description_proximity shower rain,0
+weather_description_sleet,0
+weather_description_smoke,0
+weather_description_thunderstorm,0
+weather_description_thunderstorm with heavy rain,0
+weather_description_thunderstorm with light drizzle,0
+weather_description_thunderstorm with light rain,0
+weather_description_thunderstorm with rain,0
+weather_description_very heavy rain,0
