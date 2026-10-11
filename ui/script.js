@@ -4,6 +4,10 @@
 ============================================================ */
 
 
+const API_BASE_URL =
+    "https://trafficsense-location-based-traffic.onrender.com";
+
+
 /* ============================================================
    GLOBAL CHART INSTANCES
    Used by the Model Comparison page
@@ -52,16 +56,18 @@ async function predictTraffic() {
 
     try {
 
-        const response =
-            await fetch(
-                "http://127.0.0.1:8000/predict?date=" +
-                encodeURIComponent(date) +
-                "&time=" +
-                encodeURIComponent(time),
-                {
-                    method: "POST"
-                }
-            );
+        
+    const response =
+        await fetch(
+            `${API_BASE_URL}/predict?date=` +
+            encodeURIComponent(date) +
+            "&time=" +
+            encodeURIComponent(time),
+            {
+                method: "POST"
+            }
+        );
+
 
 
         const result =
@@ -386,7 +392,7 @@ async function loadAnalytics() {
 
         const response =
             await fetch(
-                "http://127.0.0.1:8000/analytics"
+                `${API_BASE_URL}/analytics`
             );
 
 
@@ -1171,7 +1177,7 @@ async function loadModelComparison() {
 
         const response =
             await fetch(
-                "http://127.0.0.1:8000/analytics"
+                `${API_BASE_URL}/analytics`
             );
 
 
@@ -2191,7 +2197,7 @@ async function loadPredictionHistory() {
     try {
 
         const response = await fetch(
-            "http://127.0.0.1:8000/prediction-history",
+            `${API_BASE_URL}/prediction-history`,
             { cache: "no-store" }
         );
 
