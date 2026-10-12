@@ -1,16 +1,12 @@
 import oracledb
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
 
 print("==============================")
 print("ORACLE DATABASE CONNECTION")
 print("==============================")
 
-username = os.getenv("ORACLE_USER")
-password = os.getenv("ORACLE_PASSWORD")
-dsn = os.getenv("ORACLE_DSN", "localhost:1521/xe")
+username = "SYSTEM"
+password = "chiman123"
+dsn = "localhost:1521/xe"
 
 connection = oracledb.connect(
     user=username,

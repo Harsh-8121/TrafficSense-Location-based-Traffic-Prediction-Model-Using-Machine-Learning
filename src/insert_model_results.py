@@ -1,22 +1,18 @@
 import oracledb
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
 
 print("==============================")
 print("INSERTING MODEL RESULTS")
 print("==============================")
 
 # Oracle connection
-ORACLE_USERNAME = os.getenv("ORACLE_USER")
-ORACLE_PASSWORD = os.getenv("ORACLE_PASSWORD")
-ORACLE_DSN = os.getenv("ORACLE_DSN", "localhost:1521/xe")
+username = "SYSTEM"
+password = "chiman123"
+dsn = "localhost:1521/xe"
 
 connection = oracledb.connect(
-    user=ORACLE_USERNAME,
-    password=ORACLE_PASSWORD,
-    dsn=ORACLE_DSN
+    user=username,
+    password=password,
+    dsn=dsn
 )
 
 print("\nOracle connection successful!")

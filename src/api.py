@@ -7,11 +7,6 @@ import oracledb
 
 from pathlib import Path
 
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
-
 
 # ============================================================
 # PROJECT PATHS
@@ -62,29 +57,19 @@ app = FastAPI(
 # CORS
 # ============================================================
 
-# ============================================================
-# CORS
-# ============================================================
-
-FRONTEND_URL = os.getenv("FRONTEND_URL", "").strip().rstrip("/")
-
-ALLOWED_ORIGINS = [
-    "http://127.0.0.1:5501",
-    "http://localhost:5501",
-    "https://trafficsense-location-based-traffic-prediction-model-pil9ktveg.vercel.app",
-    "https://trafficsense-location-based-traffic-prediction-model-l3jwrk841.vercel.app",
-    "https://trafficsense-location-based-traffic-model-hlh9bx82.vercel.app",
-]
-
-if FRONTEND_URL and FRONTEND_URL not in ALLOWED_ORIGINS:
-    ALLOWED_ORIGINS.append(FRONTEND_URL)
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
+
+    allow_origins=[
+        "http://127.0.0.1:5501",
+        "http://localhost:5501"
+    ],
+
     allow_credentials=True,
+
     allow_methods=["*"],
-    allow_headers=["*"],
+
+    allow_headers=["*"]
 )
 
 
@@ -92,10 +77,14 @@ app.add_middleware(
 # ORACLE SETTINGS
 # ============================================================
 
-ORACLE_USERNAME = os.getenv("ORACLE_USER")
-ORACLE_PASSWORD = os.getenv("ORACLE_PASSWORD")
-ORACLE_DSN = os.getenv("ORACLE_DSN", "localhost:1521/xe")
+ORACLE_USERNAME = "SYSTEM"
 
+# IMPORTANT:
+# Put the same Oracle password that is already in your
+# current api.py file.
+ORACLE_PASSWORD = "chiman123"
+
+ORACLE_DSN = "localhost:1521/xe"
 
 
 # ============================================================
@@ -103,29 +92,14 @@ ORACLE_DSN = os.getenv("ORACLE_DSN", "localhost:1521/xe")
 # ============================================================
 
 def get_oracle_connection():
-    username = os.getenv("ORACLE_USER")
-    password = os.getenv("ORACLE_PASSWORD")
-    host = os.getenv("ORACLE_HOST")
-    port = os.getenv("ORACLE_PORT", "1521")
-    service_name = os.getenv("ORACLE_SERVICE_NAME")
 
-    if not all([username, password, host, service_name]):
-        raise RuntimeError(
-            "Oracle connection environment variables are missing"
-        )
-
-    dsn = oracledb.makedsn(
-        host,
-        int(port),
-        service_name=service_name
+    connection = oracledb.connect(
+        user=ORACLE_USERNAME,
+        password=ORACLE_PASSWORD,
+        dsn=ORACLE_DSN
     )
 
-    return oracledb.connect(
-        user=username,
-        password=password,
-        dsn=dsn
-    )
-
+    return connection
 
 
 # ============================================================
@@ -602,13 +576,19 @@ def get_analytics():
 def get_prediction_history():
 
     connection = None
-    cursor = None
 
     try:
+
         connection = get_oracle_connection()
+
         cursor = connection.cursor()
 
-        cursor.execute("""
+        # ----------------------------------------------------
+        # Get latest unique predictions from Oracle
+        # ----------------------------------------------------
+
+        cursor.execute(
+            """
             SELECT
                 date_time,
                 actual_traffic_volume,
@@ -619,73 +599,118 @@ def get_prediction_history():
                     date_time,
                     actual_traffic_volume,
                     predicted_traffic_volume,
-                    ROW_NUMBER() OVER (
+                    ROW_NUMBER() OVER
+                    (
                         PARTITION BY date_time
                         ORDER BY prediction_id DESC
-                    ) AS rn
+                    ) AS row_number
                 FROM TRAFFIC_PREDICTIONS
             )
-            WHERE rn = 1
+            WHERE row_number = 1
             ORDER BY date_time DESC
             FETCH FIRST 10 ROWS ONLY
-        """)
+            """
+        )
 
         rows = cursor.fetchall()
+
         predictions = []
 
+        # ----------------------------------------------------
+        # Process Oracle records
+        # ----------------------------------------------------
+
         for row in rows:
+
             date_time = row[0]
+
             actual = float(row[1])
+
             predicted = float(row[2])
 
             error = abs(actual - predicted)
 
             if actual != 0:
-                error_percentage = (error / actual) * 100
+
+                error_percentage = (
+                    error / actual
+                ) * 100
+
             else:
+
                 error_percentage = 0
 
+            # ------------------------------------------------
+            # Traffic status
+            # ------------------------------------------------
+
             if predicted < 2500:
+
                 traffic_status = "LOW"
+
             elif predicted < 4500:
+
                 traffic_status = "MODERATE"
+
             else:
+
                 traffic_status = "HIGH"
 
-            predictions.append({
-                "date_time": date_time.strftime("%Y-%m-%d %H:%M")
-                    if hasattr(date_time, "strftime")
-                    else str(date_time),
-                "actual": round(actual, 2),
-                "predicted": round(predicted, 2),
-                "error": round(error, 2),
-                "error_percentage": round(error_percentage, 1),
-                "traffic_status": traffic_status
-            })
+            predictions.append(
+                {
+                    "date_time":
+                        date_time.strftime(
+                            "%Y-%m-%d %H:%M"
+                        ),
+
+                    "actual":
+                        round(actual, 2),
+
+                    "predicted":
+                        round(predicted, 2),
+
+                    "error":
+                        round(error, 2),
+
+                    "error_percentage":
+                        round(error_percentage, 1),
+
+                    "traffic_status":
+                        traffic_status
+                }
+            )
+
+        cursor.close()
+
+        connection.close()
+
+        # ----------------------------------------------------
+        # Return history
+        # ----------------------------------------------------
 
         return {
+
             "status": "success",
-            "count": len(predictions),
-            "predictions": predictions
+
+            "count":
+                len(predictions),
+
+            "predictions":
+                predictions
         }
 
     except Exception as e:
-        print("Prediction history error:", repr(e))
+
+        if connection:
+
+            connection.close()
+
+        print(
+            "Prediction history error:",
+            e
+        )
 
         raise HTTPException(
             status_code=500,
-            detail="Unable to retrieve prediction history. Check the server logs."
+            detail=str(e)
         )
-
-    finally:
-        if cursor is not None:
-            try:
-                cursor.close()
-            except Exception:
-                pass
-
-        if connection is not None:
-            try:
-                connection.close()
-            except Exception:
-                pass

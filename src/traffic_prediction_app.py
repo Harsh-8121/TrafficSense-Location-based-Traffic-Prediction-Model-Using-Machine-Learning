@@ -1,23 +1,13 @@
 import pandas as pd
 import joblib
 import oracledb
-import os
-from dotenv import load_dotenv
-from pathlib import Path
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-load_dotenv()
 
 print("==============================")
 print("TRAFFIC VOLUME PREDICTION APP")
 print("==============================")
 
 # Load processed dataset
-data = pd.read_csv(
-    BASE_DIR / "outputs" / "processed_traffic_data.csv"
-)
+data = pd.read_csv("outputs/processed_traffic_data.csv")
 
 # Convert date_time
 data["date_time"] = pd.to_datetime(data["date_time"])
@@ -101,9 +91,9 @@ else:
     print("Prediction Error:", prediction_error)
 
     # Oracle connection
-    username = os.getenv("ORACLE_USER")
-    password = os.getenv("ORACLE_PASSWORD")
-    dsn = os.getenv("ORACLE_DSN", "localhost:1521/xe")
+    username = "SYSTEM"
+    password = "chiman123"
+    dsn = "localhost:1521/xe"
 
     connection = oracledb.connect(
         user=username,
